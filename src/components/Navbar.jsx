@@ -2,7 +2,7 @@ import React from 'react';
 
 const Navbar = () => {
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark" id='navbar'>
             <div className="container">
             
                 <a className="navbar-brand" href="/">Learning Management System</a>

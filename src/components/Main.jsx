@@ -21,6 +21,7 @@ import UserRegister from './users/UserRegister';
 import MyCourses from './users/MyCourses';
 import FavoriteCourses from './users/FavoriteCourses';
 import RecommendedCourses from './users/RecommendedCourses';
+import ProfileSetting from './users/ProfileSetting';
 
 
 const Main = () => {
@@ -41,6 +42,9 @@ const Main = () => {
                 <Route path="/my-courses" element={<MyCourses />} />
                 <Route path="/favorite-courses" element={<FavoriteCourses />} />
                 <Route path="/recommended-courses" element={<RecommendedCourses />} />
+                <Route path="/profile-setting" element={<ProfileSetting />} />
+                <Route path="/change-password" element={<RecommendedCourses />} />
+                <Route path="/logout" element={<RecommendedCourses />} />
             </Routes>
 
             <Footer/>

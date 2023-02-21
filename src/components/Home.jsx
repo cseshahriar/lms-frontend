@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 
 const Home = () => {
     return (
@@ -8,9 +10,11 @@ const Home = () => {
             <div className="row mb-4">
                 <div className="col-md-3">
                     <div className="card">
-                        <a href='/'>
+                        
+                        <Link to='/'>
                             <img src="logo512.png" className="card-img-top" alt="" />
-                        </a>
+                        </Link>
+
                         <div className="card-body">
                             <h5 className="card-title text-center">
                                 <a href='/'>Course title</a>
@@ -73,8 +77,8 @@ const Home = () => {
 
 
 
-            {/* Featured teachers */}
-            <h1 className="pd-1 mb-4 mt-5">Featured Teachers <a href='/' className='float-end'>See All</a></h1>
+            {/* Popular teachers */}
+            <h1 className="pd-1 mb-4 mt-5">Popular Teachers <a href='/' className='float-end'>See All</a></h1>
             <div className="row mb-4">
                 <div className="col-md-3">
                     <div className="card">
@@ -104,15 +108,15 @@ const Home = () => {
 
 
             </div>
-            {/* End Featured teachers */}
+            {/* End Popular teachers */}
 
 
             {/* student  testimonial */}
-            <h1 className="pd-1 mb-4 mt-5">Student Testimonial</h1>
+            <h1 className="pd-1 mb-4 mt-5">Student Testimonials</h1>
 
             <div id="carouselExampleIndicators" className="carousel slide bg-dark text-white py-5" data-bs-ride="true">
                 <div className="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 </div>
@@ -140,7 +144,7 @@ const Home = () => {
                         </figure>
                     </div>
 
-                    <div class="carousel-item">
+                    <div className="carousel-item">
                         <figure className="text-center">
                             <blockquote className="blockquote">
                                 <p>A well-known quote, contained in a blockquote element.</p>

@@ -7,8 +7,8 @@ const Footer = () => {
                 <p className="float-end mb-1">
                     <a href="#navbar">Back to top</a>
                 </p>
-                <p className="mb-1">Album example is © Bootstrap, but please download and customize it for yourself!</p>
-                <p className="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="/docs/5.3/getting-started/introduction/">getting started guide</a>.</p>
+                <p className="mb-1">Copyright &copy; {(new Date().getFullYear())}  LMS All right reserved</p>
+            
             </div>
         </footer>
     );

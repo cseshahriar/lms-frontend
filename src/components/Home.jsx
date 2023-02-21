@@ -7,36 +7,22 @@ const Home = () => {
         <div className="container mt-4">
             {/* latest courses */}
             <h1 className="pd-1 mb-4">Latest Courses <a href='/' className='float-end'>See All</a></h1>
+
             <div className="row mb-4">
                 <div className="col-md-3">
                     <div className="card">
                         
-                        <Link to='/'>
+                        <Link to={`/courses/${1}`}>
                             <img src="logo512.png" className="card-img-top" alt="" />
                         </Link>
 
                         <div className="card-body">
                             <h5 className="card-title text-center">
-                                <a href='/'>Course title</a>
+                                <Link to={`/courses/${1}`}>Course title</Link>
                             </h5>
                         </div>
                     </div>
                 </div>
-
-                <div className="col-md-3">
-                    <div className="card">
-                        <a href='/'>
-                            <img src="logo512.png" className="card-img-top" alt="" />
-                        </a>
-                        <div className="card-body">
-                            <h5 className="card-title text-center">
-                                <a href='/'>Course title</a>
-                            </h5>
-                        </div>
-                    </div>
-                </div>
-
-
             </div>
             {/* End latest courses */}
 
@@ -165,10 +151,7 @@ const Home = () => {
                     <span className="carousel-control-next-icon" aria-hidden="true"></span>
                     <span className="visually-hidden">Next</span>
                 </button>
-            </div>
-
-           
-            
+            </div> 
             {/* End student testimonial */}
 
         </div>

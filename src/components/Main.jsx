@@ -18,6 +18,8 @@ import UserDashboard from './users/UserDashboard';
 import UserLogin from './users/UserLogin';
 import UserRegister from './users/UserRegister';
 
+import MyCourses from './users/MyCourses';
+
 
 const Main = () => {
     return (
@@ -34,6 +36,7 @@ const Main = () => {
                 <Route path="/user-dashboard" element={<UserDashboard />} />
                 <Route path="/user-login" element={<UserLogin />} />
                 <Route path="/user-register" element={<UserRegister />} />
+                <Route path="/my-courses" element={<MyCourses />} />
             </Routes>
 
             <Footer/>

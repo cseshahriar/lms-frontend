@@ -29,6 +29,19 @@ const Navbar = () => {
                         <li className="nav-item">
                             <Link className="nav-link" to="/about">About Us</Link>
                         </li>
+
+
+                        <li className="nav-item dropdown">
+                            <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-circle"></i> User Name</a>
+                            <ul className="dropdown-menu">
+                                <li><Link className="dropdown-item" to="/user-login"><i class="bi bi-box-arrow-left"></i> Login</Link></li>
+                                <li><Link className="dropdown-item" to="/user-register"><i class="bi bi-database-fill-add"></i> Register</Link></li>
+                                <li><hr className='dropdown-divider'/></li>
+                                <li><Link className="dropdown-item" to="/user-dashboard"><i class="bi bi-gear"></i> Dashboard</Link></li>
+                                <li><Link className="dropdown-item" to="/user-logout"><i class="bi bi-box-arrow-right"></i> Logout</Link></li>
+                            </ul>
+                        </li>
+
                     </ul>
                 </div>
             </div>

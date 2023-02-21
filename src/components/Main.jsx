@@ -13,6 +13,10 @@ import CourseDetail from './CourseDetail';
 import About from './About';
 
 
+// ============================ user components ===============================
+import UserDashboard from './users/UserDashboard';
+import UserLogin from './users/UserLogin';
+import UserRegister from './users/UserRegister';
 
 
 const Main = () => {
@@ -25,6 +29,11 @@ const Main = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/courses/:course_id" element={<CourseDetail />} />
+                <Route path="/courses/:course_id" element={<CourseDetail />} />
+                {/* user dashboard */}
+                <Route path="/user-dashboard" element={<UserDashboard />} />
+                <Route path="/user-login" element={<UserLogin />} />
+                <Route path="/user-register" element={<UserRegister />} />
             </Routes>
 
             <Footer/>

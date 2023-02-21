@@ -13,7 +13,7 @@ const Sidebar = () => {
                 <Link to='/recommended-courses' className='list-group-item list-group-item-action'>Recommended Courses</Link>
                 <Link to='/profile-setting' className='list-group-item list-group-item-action'>Profile Settings</Link>
                 <Link to='/change-password' className='list-group-item list-group-item-action'>Change Password</Link>
-                <Link to='/logout' className='list-group-item list-group-item-action'>Logout</Link>
+                <Link to='/user-login' className='list-group-item list-group-item-action'>Logout</Link>
             </div>
         </div>
     );

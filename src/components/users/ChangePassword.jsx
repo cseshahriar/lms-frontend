@@ -1,7 +1,7 @@
 import React from 'react';
 import Sidebar from './Sidebar';
 
-const ProfileSetting = () => {
+const ChangePassword = () => {
     return (
         <div className='container py-5'>
             <div className='row'>
@@ -13,26 +13,19 @@ const ProfileSetting = () => {
                 {/* content */}
                 <section className='col-md-9'>
                     <div className='card'>
-                        <h5 className='card-header'>Profile Setting</h5>
+                        <h5 className='card-header'>Change Password</h5>
                         <div className='card-body'>
                             <form className="row g-3">
-                                
-                                <div className="mb-3 row mt-4">
-                                    <label for="full_name" class="col-sm-2 col-form-label">Full Name</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="full_name" value="Shahriar"/>
-                                    </div>
-                                </div>
 
-                                <div className="mb-3 row">
-                                    <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+                                <div class="mb-3 row mt-4">
+                                    <label for="inputPassword" class="col-sm-2 col-form-label">New Password</label>
                                     <div class="col-sm-10">
-                                        <input type="text" readonly class="form-control" id="staticEmail" value="email@example.com"/>
+                                        <input type="password" class="form-control" id="inputPassword"/>
                                     </div>
                                 </div>
 
                                 <div class="mb-3 row">
-                                    <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+                                    <label for="inputPassword" class="col-sm-2 col-form-label">Confirm Password</label>
                                     <div class="col-sm-10">
                                         <input type="password" class="form-control" id="inputPassword"/>
                                     </div>
@@ -49,4 +42,4 @@ const ProfileSetting = () => {
     );
 };
 
-export default ProfileSetting;
+export default ChangePassword;

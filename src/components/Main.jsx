@@ -19,6 +19,8 @@ import UserLogin from './users/UserLogin';
 import UserRegister from './users/UserRegister';
 
 import MyCourses from './users/MyCourses';
+import FavoriteCourses from './users/FavoriteCourses';
+import RecommendedCourses from './users/RecommendedCourses';
 
 
 const Main = () => {
@@ -37,6 +39,8 @@ const Main = () => {
                 <Route path="/user-login" element={<UserLogin />} />
                 <Route path="/user-register" element={<UserRegister />} />
                 <Route path="/my-courses" element={<MyCourses />} />
+                <Route path="/favorite-courses" element={<FavoriteCourses />} />
+                <Route path="/recommended-courses" element={<RecommendedCourses />} />
             </Routes>
 
             <Footer/>

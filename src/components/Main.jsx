@@ -17,6 +17,7 @@ import TeacherDetail from './TeacherDetail';
 import AllCourses from './AllCourses';
 import PopularCourses from './PopularCourses';
 import AllFavoriteCourses from './AllFavoriteCourses';
+import PopularTeachers from './PopularTeachers';
 
 
 // ============================ user components ===============================
@@ -56,6 +57,7 @@ const Main = () => {
                 <Route path="/all-courses" element={<AllCourses />} />
                 <Route path="/all-popular-courses" element={<PopularCourses />} />
                 <Route path="/all-favorite-courses" element={<AllFavoriteCourses />} />
+                <Route path="//all-popular-teachers" element={<PopularTeachers />} />
 
                 {/* user dashboard paths */}
                 <Route path="/user-dashboard" element={<UserDashboard />} />

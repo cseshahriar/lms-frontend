@@ -1,29 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const AllFavoriteCourses = () => {
+
+const PopularTeachers = () => {
     return (
         <div className='container mt-3'>
             {/* latest courses */}
-            <h1 className="pd-1 mb-4">Favorite Courses <Link to='/all-favorite-courses' className='float-end'>See All</Link></h1>
+            <h1 className="pd-1 mb-4">Popular Instructors <Link to='/all-popular-teachers' className='float-end'>See All</Link></h1>
             <div className="row mb-4">
                 {/* single course */}
                 <div className="col-md-3 mb-4">
                     <div className="card p-3">
-                        <Link to={`/courses/${1}`}>
-                            <img src="python.png" className="card-img-top" alt="" />
+                        <Link to={`/teachers/${1}`}>
+                            <img src="teacher.png" className="card-img-top" alt="" />
                         </Link>
 
                         <div className="card-body">
                             <h5 className="card-title text-center">
-                                <Link to={`/courses/${1}`}>Course title</Link>
+                                <Link to={`/teachers/${1}`}>Name</Link>
                             </h5>
                         </div>
 
                         <div className='card-footer'>
                             <div className='title'>
                                 <span>Rating: 4.5/5 </span>  
-                                <span className='float-end'> Views: 1000</span>
                             </div>
                         </div>
                     </div>
@@ -32,20 +32,19 @@ const AllFavoriteCourses = () => {
                 {/* single course */}
                 <div className="col-md-3 mb-4">
                     <div className="card p-3">
-                        <Link to={`/courses/${1}`}>
-                            <img src="django.png" className="card-img-top" alt="" />
+                        <Link to={`/teachers/${1}`}>
+                            <img src="teacher.png" className="card-img-top" alt="" />
                         </Link>
 
                         <div className="card-body">
                             <h5 className="card-title text-center">
-                                <Link to={`/courses/${1}`}>Course title</Link>
+                                <Link to={`/teachers/${1}`}>Name</Link>
                             </h5>
                         </div>
 
                         <div className='card-footer'>
                             <div className='title'>
                                 <span>Rating: 4.5/5 </span>  
-                                <span className='float-end'> Views: 1000</span>
                             </div>
                         </div>
                     </div>
@@ -54,20 +53,19 @@ const AllFavoriteCourses = () => {
                 {/* single course */}
                 <div className="col-md-3 mb-4">
                     <div className="card p-3">
-                        <Link to={`/courses/${1}`}>
-                            <img src="python.png" className="card-img-top" alt="" />
+                        <Link to={`/teachers/${1}`}>
+                            <img src="teacher.png" className="card-img-top" alt="" />
                         </Link>
 
                         <div className="card-body">
                             <h5 className="card-title text-center">
-                                <Link to={`/courses/${1}`}>Course title</Link>
+                                <Link to={`/teachers/${1}`}>Name</Link>
                             </h5>
                         </div>
 
                         <div className='card-footer'>
                             <div className='title'>
                                 <span>Rating: 4.5/5 </span>  
-                                <span className='float-end'> Views: 1000</span>
                             </div>
                         </div>
                     </div>
@@ -76,20 +74,19 @@ const AllFavoriteCourses = () => {
                 {/* single course */}
                 <div className="col-md-3 mb-4">
                     <div className="card p-3">
-                        <Link to={`/courses/${1}`}>
-                            <img src="django.png" className="card-img-top" alt="" />
+                        <Link to={`/teachers/${1}`}>
+                            <img src="teacher.png" className="card-img-top" alt="" />
                         </Link>
 
                         <div className="card-body">
                             <h5 className="card-title text-center">
-                                <Link to={`/courses/${1}`}>Course title</Link>
+                                <Link to={`/teachers/${1}`}>Course title</Link>
                             </h5>
                         </div>
 
                         <div className='card-footer'>
                             <div className='title'>
                                 <span>Rating: 4.5/5 </span>  
-                                <span className='float-end'> Views: 1000</span>
                             </div>
                         </div>
                     </div>
@@ -111,4 +108,4 @@ const AllFavoriteCourses = () => {
     );
 };
 
-export default AllFavoriteCourses;
+export default PopularTeachers;

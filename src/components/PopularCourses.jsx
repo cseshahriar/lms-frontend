@@ -19,6 +19,13 @@ const PopularCourses = () => {
                                 <Link to={`/courses/${1}`}>Course title</Link>
                             </h5>
                         </div>
+
+                        <div className='card-footer'>
+                            <div className='title'>
+                                <span>Rating: 4.5/5 </span>  
+                                <span className='float-end'> Views: 1000</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
@@ -33,6 +40,13 @@ const PopularCourses = () => {
                             <h5 className="card-title text-center">
                                 <Link to={`/courses/${1}`}>Course title</Link>
                             </h5>
+                        </div>
+
+                        <div className='card-footer'>
+                            <div className='title'>
+                                <span>Rating: 4.5/5 </span>  
+                                <span className='float-end'> Views: 1000</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -49,6 +63,13 @@ const PopularCourses = () => {
                                 <Link to={`/courses/${1}`}>Course title</Link>
                             </h5>
                         </div>
+
+                        <div className='card-footer'>
+                            <div className='title'>
+                                <span>Rating: 4.5/5 </span>  
+                                <span className='float-end'> Views: 1000</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -63,6 +84,13 @@ const PopularCourses = () => {
                             <h5 className="card-title text-center">
                                 <Link to={`/courses/${1}`}>Course title</Link>
                             </h5>
+                        </div>
+
+                        <div className='card-footer'>
+                            <div className='title'>
+                                <span>Rating: 4.5/5 </span>  
+                                <span className='float-end'> Views: 1000</span>
+                            </div>
                         </div>
                     </div>
                 </div>

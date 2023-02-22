@@ -2,7 +2,7 @@ import React from 'react';
 import AllCourses from './AllCourses';
 import PopularCourses from './PopularCourses';
 import AllFavoriteCourses from './AllFavoriteCourses';
-
+import PopularTeachers from './PopularTeachers';
 
 
 const Home = () => {
@@ -11,6 +11,7 @@ const Home = () => {
             <AllCourses />
             <AllFavoriteCourses />
             <PopularCourses/>
+            <PopularTeachers/>
 
             {/* student  testimonial */}
             <h1 className="pd-1 mb-4 mt-5">Student Testimonials</h1>

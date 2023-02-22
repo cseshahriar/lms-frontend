@@ -17,13 +17,21 @@ import About from './About';
 import UserDashboard from './users/UserDashboard';
 import UserLogin from './users/UserLogin';
 import UserRegister from './users/UserRegister';
-
 import MyCourses from './users/MyCourses';
 import FavoriteCourses from './users/FavoriteCourses';
 import RecommendedCourses from './users/RecommendedCourses';
 import ProfileSetting from './users/ProfileSetting';
 import ChangePassword from './users/ChangePassword';
 
+// ============================ teachers components ===============================
+import TeacherDashboard from "./teachers/TeacherDashboard";
+import TeacherLogin from "./teachers/TeacherLogin";
+import TeacherRegister from "./teachers/TeacherRegister";
+import TeacherCourses from "./teachers/TeacherCourses";
+import TeacherFavoriteCourses from "./teachers/TeacherFavoriteCourses";
+import TeacherRecommendedCourses from "./teachers/TeacherRecommendedCourses";
+import TeacherProfileSetting from "./teachers/TeacherProfileSetting";
+import TeacherChangePassword from "./teachers/TeacherChangePassword";
 
 const Main = () => {
     return (
@@ -36,7 +44,7 @@ const Main = () => {
                 <Route path="/about" element={<About />} />
                 <Route path="/courses/:course_id" element={<CourseDetail />} />
                 <Route path="/courses/:course_id" element={<CourseDetail />} />
-                {/* user dashboard */}
+                {/* user dashboard paths */}
                 <Route path="/user-dashboard" element={<UserDashboard />} />
                 <Route path="/user-login" element={<UserLogin />} />
                 <Route path="/user-register" element={<UserRegister />} />
@@ -45,7 +53,18 @@ const Main = () => {
                 <Route path="/recommended-courses" element={<RecommendedCourses />} />
                 <Route path="/profile-setting" element={<ProfileSetting />} />
                 <Route path="/change-password" element={<ChangePassword />} />
-                <Route path="/logout" element={<RecommendedCourses />} />
+                <Route path="/logout" element={<UserLogin />} />
+
+                {/* teacher dashboard paths */}
+                <Route path="/teacher-dashboard" element={<TeacherDashboard />} />
+                <Route path="/teacher-login" element={<TeacherLogin />} />
+                <Route path="/teacher-register" element={<TeacherRegister />} />
+                <Route path="/teacher-courses" element={<TeacherCourses />} />
+                <Route path="/teacher-favorite-courses" element={<TeacherFavoriteCourses />} />
+                <Route path="/teacher-recommended-courses" element={<TeacherRecommendedCourses />} />
+                <Route path="/teacher-profile-setting" element={<TeacherProfileSetting />} />
+                <Route path="/teacher-change-password" element={<TeacherChangePassword />} />
+                <Route path="/logout" element={<TeacherLogin />} />
             </Routes>
 
             <Footer/>

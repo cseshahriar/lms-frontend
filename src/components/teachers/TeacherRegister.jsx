@@ -1,9 +1,9 @@
 import React from 'react';
 
-const UserRegister = () => {
+const TeacherRegister = () => {
     return (
         <div className='container py-5'>
-        <h1>Register</h1>
+        <h1>Teacher Register</h1>
         <div className='row'>
             <form>
                 <div className="mb-3">
@@ -29,7 +29,7 @@ const UserRegister = () => {
                 </div>
 
                 <div class="mb-3">
-                    <label for="interest" className="form-label">Interest</label>
+                    <label for="interest" className="form-label">Skills</label>
                     <textarea name="interest"  className="form-control" id="interest"></textarea>
                     <div id="emailHelp" class="form-text">PHP, Python, JavaScript</div>
                 </div>
@@ -41,4 +41,4 @@ const UserRegister = () => {
     );
 };
 
-export default UserRegister;
+export default TeacherRegister;

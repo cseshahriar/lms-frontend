@@ -1,13 +1,13 @@
 import React from 'react';
-import Sidebar from './Sidebar';
+import TeacherSidebar from './TeacherSidebar';
 
-const ProfileSetting = () => {
+const TeacherProfileSetting = () => {
     return (
         <div className='container py-5'>
             <div className='row'>
                 {/* aside */}
                 <aside className='col-md-3'>
-                    <Sidebar/>
+                    <TeacherSidebar/>
                 </aside>
 
                 {/* content */}
@@ -46,7 +46,7 @@ const ProfileSetting = () => {
                                 </div>
 
                                 <div className="mb-3">
-                                    <label htmlFor="interest" className="form-label">Interest</label>
+                                    <label htmlFor="interest" className="form-label">Skills</label>
                                     <textarea name="interest" className="form-control" id="interest"></textarea>
                                     <div id="emailHelp" className="form-text">PHP, Python, JavaScript</div>
                                 </div>
@@ -64,4 +64,4 @@ const ProfileSetting = () => {
     );
 };
 
-export default ProfileSetting;
+export default TeacherProfileSetting;

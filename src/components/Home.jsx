@@ -19,6 +19,12 @@ const Home = () => {
                                 <a href='/'>Course title</a>
                             </h5>
                         </div>
+                        <div className='card-footer'>
+                            <div className='title'>
+                                <span>Rating: 4.5/5 </span>    
+                                <span className='float-end'> Views: 1000</span>  
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -31,6 +37,12 @@ const Home = () => {
                             <h5 className="card-title text-center">
                                 <a href='/'>Course title</a>
                             </h5>
+                        </div>
+                        <div className='card-footer'>
+                            <div className='title'>
+                                <span>Rating: 4.5/5 </span>  
+                                <span className='float-end'> Views: 1000</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -54,6 +66,12 @@ const Home = () => {
                                 <a href='/'>Teacher Name</a>
                             </h5>
                         </div>
+                        <div className='card-footer'>
+                            <div className='title'>
+                                <span>Rating: 4.5/5 </span>  
+                                <span className='float-end'> Views: 1000</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -67,10 +85,14 @@ const Home = () => {
                                 <a href='/'>Teacher Name</a>
                             </h5>
                         </div>
+                        <div className='card-footer'>
+                            <div className='title'>
+                                <span>Rating: 4.5/5 </span>  
+                                <span className='float-end'> Views: 1000</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-
             </div>
             {/* End Popular teachers */}
 

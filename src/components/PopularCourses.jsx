@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-
-const AllCourses = () => {
+const PopularCourses = () => {
     return (
         <div className='container mt-3'>
             {/* latest courses */}
-            <h1 className="pd-1 mb-4">Latest Courses <Link to='/all-courses' className='float-end'>See All</Link></h1>
+            <h1 className="pd-1 mb-4">Popular Courses <Link to='/all-courses' className='float-end'>See All</Link></h1>
             <div className="row mb-4">
                 {/* single course */}
                 <div className="col-md-3 mb-4">
@@ -19,13 +18,6 @@ const AllCourses = () => {
                             <h5 className="card-title text-center">
                                 <Link to={`/courses/${1}`}>Course title</Link>
                             </h5>
-                        </div>
-
-                        <div className='card-footer'>
-                            <div className='title'>
-                                <span>Rating: 4.5/5 </span>  
-                                <span className='float-end'> Views: 1000</span>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -42,13 +34,6 @@ const AllCourses = () => {
                                 <Link to={`/courses/${1}`}>Course title</Link>
                             </h5>
                         </div>
-
-                        <div className='card-footer'>
-                            <div className='title'>
-                                <span>Rating: 4.5/5 </span>  
-                                <span className='float-end'> Views: 1000</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -63,13 +48,6 @@ const AllCourses = () => {
                             <h5 className="card-title text-center">
                                 <Link to={`/courses/${1}`}>Course title</Link>
                             </h5>
-                        </div>
-
-                        <div className='card-footer'>
-                            <div className='title'>
-                                <span>Rating: 4.5/5 </span>  
-                                <span className='float-end'> Views: 1000</span>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -86,18 +64,10 @@ const AllCourses = () => {
                                 <Link to={`/courses/${1}`}>Course title</Link>
                             </h5>
                         </div>
-
-                        <div className='card-footer'>
-                            <div className='title'>
-                                <span>Rating: 4.5/5 </span>  
-                                <span className='float-end'> Views: 1000</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
             {/* End latest courses */}
-
 
             {/* pagination */}
             <nav aria-label="Page navigation mt-3">
@@ -109,9 +79,8 @@ const AllCourses = () => {
                     <li className="page-item"><Link className="page-link" href="#">Next</Link></li>
                 </ul>
             </nav>
-
         </div>
     );
 };
 
-export default AllCourses;
+export default PopularCourses;

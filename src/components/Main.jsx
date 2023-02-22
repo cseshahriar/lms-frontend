@@ -20,16 +20,17 @@ import UserRegister from './users/UserRegister';
 import MyCourses from './users/MyCourses';
 import ProfileSetting from './users/ProfileSetting';
 import ChangePassword from './users/ChangePassword';
+import FavoriteCourses from "./users/FavoriteCourses";
+import RecommendedCourses from "./users/RecommendedCourses";
 
 // ============================ teachers components ===============================
 import TeacherDashboard from "./teachers/TeacherDashboard";
 import TeacherLogin from "./teachers/TeacherLogin";
 import TeacherRegister from "./teachers/TeacherRegister";
 import TeacherCourses from "./teachers/TeacherCourses";
-import TeacherFavoriteCourses from "./teachers/TeacherFavoriteCourses";
-import TeacherRecommendedCourses from "./teachers/TeacherRecommendedCourses";
 import TeacherProfileSetting from "./teachers/TeacherProfileSetting";
 import TeacherChangePassword from "./teachers/TeacherChangePassword";
+import AddCourse from "./teachers/AddCourse";
 
 const Main = () => {
     return (
@@ -60,6 +61,7 @@ const Main = () => {
                 <Route path="/teacher-courses" element={<TeacherCourses />} />
                 <Route path="/teacher-profile-setting" element={<TeacherProfileSetting />} />
                 <Route path="/teacher-change-password" element={<TeacherChangePassword />} />
+                <Route path="/teacher-add-course" element={<AddCourse />} />
                 <Route path="/logout" element={<TeacherLogin />} />
             </Routes>
 

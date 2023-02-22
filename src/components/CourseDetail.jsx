@@ -30,20 +30,59 @@ const CourseDetail = () => {
                 
                 <ul className='list-group list-group-flush'>
                     <li className='list-group-item'>Introduction 
-                        <button className='btn btn-sm btn-danger float-end'>
-                            <i class="bi bi-youtube"></i>
-                        </button>
-                    </li>
-                    <li className='list-group-item'>Setup project
-                        <button className='btn btn-sm btn-danger float-end'>
-                            <i class="bi bi-youtube"></i>
-                        </button>
-                    </li>
-                    <li className='list-group-item'>
-                        Start with functional component
-                        <button className='btn btn-sm btn-danger float-end'>
+                        <span className='float-end'>
+                            <span className='me-5'>1 Hour 30 Minutes</span>
+                            <button type="button"  className='btn btn-sm btn-danger float-end' 
+                                data-bs-toggle="modal" data-bs-target="#videoModal1">
                                 <i class="bi bi-youtube"></i>
-                        </button>
+                            </button>
+                        </span>
+
+                        {/* video modal start */}
+                        <div className="modal fade" id="videoModal1" tabindex="-1" aria-labelledby="videoModal1Label" aria-hidden="true">
+                            <div className="modal-dialog modal-lg">
+                                <div className="modal-content">
+                                    <div className="modal-header">
+                                        <h1 className="modal-title fs-5" id="videoModal1Label">Video title 1</h1>
+                                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div className="modal-body">
+                                        <div class="ratio ratio-16x9">
+                                            <iframe src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" title="YouTube video" allowfullscreen></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {/* video modal end */}
+                    </li>
+
+                    <li className='list-group-item'>Setup Environment
+                        <span className='float-end'>
+                            <span className='me-5'>1 Hour 30 Minutes</span>
+                            <button type="button"  className='btn btn-sm btn-danger float-end' 
+                                data-bs-toggle="modal" data-bs-target="#videoModal2">
+                                <i class="bi bi-youtube"></i>
+                            </button>
+                        </span>
+
+                        {/* video modal start */}
+                        <div className="modal fade" id="videoModal2" tabindex="-1" aria-labelledby="videoModal2Label" aria-hidden="true">
+                            <div className="modal-dialog modal-lg">
+                                <div className="modal-content">
+                                    <div className="modal-header">
+                                        <h1 className="modal-title fs-5" id="videoModalLabel">Modal title 2</h1>
+                                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div className="modal-body">
+                                        <div class="ratio ratio-16x9">
+                                            <iframe src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" title="YouTube video" allowfullscreen></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {/* video modal end */}
                     </li>
                 </ul>
             </div>

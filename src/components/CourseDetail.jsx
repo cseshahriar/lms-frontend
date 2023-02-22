@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 
 const CourseDetail = () => {
     let { course_id } = useParams();
-    console.log('id', course_id);
+    console.log('course_id', course_id);
     
     return (
         <div className="container py-5">
@@ -15,7 +15,7 @@ const CourseDetail = () => {
                 <div className="col-md-8">
                     <h1>Course Title</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam, error doloremque ipsa optio, est enim cupiditate doloribus soluta reiciendis architecto perferendis. Inventore adipisci ullam autem! Quam aperiam numquam itaque optio.</p>
-                    <p className='fw-bold'>Course Created By: <Link to="/teachers">Author Name</Link></p>
+                    <p className='fw-bold'>Course Created By: <Link to="/teachers/1">Author Name</Link></p>
                     <p className='fw-bold'>Course Duration: 30 Hours 30 Minutes</p>
                     <p className='fw-bold'>Total Enrolled: 456 Students</p>
                     <p className='fw-bold'>Rating: 4.5/5</p>

@@ -11,6 +11,7 @@ import CourseDetail from './CourseDetail';
 
 // ============================ pages =========================================
 import About from './About';
+import TeacherDetail from './TeacherDetail';
 
 
 // ============================ user components ===============================
@@ -40,10 +41,13 @@ const Main = () => {
             
             {/* routes */}
             <Routes>
+                {/* website paths*/}
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/courses/:course_id" element={<CourseDetail />} />
                 <Route path="/courses/:course_id" element={<CourseDetail />} />
+                <Route path="/teachers/:teacher_id" element={<TeacherDetail />} />
+
                 {/* user dashboard paths */}
                 <Route path="/user-dashboard" element={<UserDashboard />} />
                 <Route path="/user-login" element={<UserLogin />} />

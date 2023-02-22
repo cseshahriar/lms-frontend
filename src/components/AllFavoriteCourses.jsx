@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const PopularCourses = () => {
+const AllFavoriteCourses = () => {
     return (
         <div className='container mt-3'>
             {/* latest courses */}
-            <h1 className="pd-1 mb-4">Popular Courses <Link to='/all-popular-courses' className='float-end'>See All</Link></h1>
+            <h1 className="pd-1 mb-4">Favorite Courses <Link to='/all-favorite-courses' className='float-end'>See All</Link></h1>
             <div className="row mb-4">
                 {/* single course */}
                 <div className="col-md-3 mb-4">
@@ -83,4 +83,4 @@ const PopularCourses = () => {
     );
 };
 
-export default PopularCourses;
+export default AllFavoriteCourses;

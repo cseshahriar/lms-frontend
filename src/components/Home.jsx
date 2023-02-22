@@ -1,101 +1,16 @@
 import React from 'react';
 import AllCourses from './AllCourses';
+import PopularCourses from './PopularCourses';
+import AllFavoriteCourses from './AllFavoriteCourses';
+
+
 
 const Home = () => {
     return (
         <div className="container mt-4">
             <AllCourses />
-
-            {/* popular courses */}
-            <h1 className="pd-1 mb-4 mt-5">Popular Courses <a href='/' className='float-end'>See All</a></h1>
-            <div className="row mb-4">
-                <div className="col-md-3">
-                    <div className="card">
-                        <a href='/'>
-                            <img src="logo512.png" className="card-img-top" alt="" />
-                        </a>
-                        <div className="card-body">
-                            <h5 className="card-title text-center">
-                                <a href='/'>Course title</a>
-                            </h5>
-                        </div>
-                        <div className='card-footer'>
-                            <div className='title'>
-                                <span>Rating: 4.5/5 </span>    
-                                <span className='float-end'> Views: 1000</span>  
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="col-md-3">
-                    <div className="card">
-                        <a href='/'>
-                            <img src="logo512.png" className="card-img-top" alt="" />
-                        </a>
-                        <div className="card-body">
-                            <h5 className="card-title text-center">
-                                <a href='/'>Course title</a>
-                            </h5>
-                        </div>
-                        <div className='card-footer'>
-                            <div className='title'>
-                                <span>Rating: 4.5/5 </span>  
-                                <span className='float-end'> Views: 1000</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-            {/* End Popular courses */}
-
-
-
-            {/* Popular teachers */}
-            <h1 className="pd-1 mb-4 mt-5">Popular Teachers <a href='/' className='float-end'>See All</a></h1>
-            <div className="row mb-4">
-                <div className="col-md-3">
-                    <div className="card">
-                        <a href='/'>
-                            <img src="logo512.png" className="card-img-top" alt="" />
-                        </a>
-                        <div className="card-body">
-                            <h5 className="card-title text-center">
-                                <a href='/'>Teacher Name</a>
-                            </h5>
-                        </div>
-                        <div className='card-footer'>
-                            <div className='title'>
-                                <span>Rating: 4.5/5 </span>  
-                                <span className='float-end'> Views: 1000</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="col-md-3">
-                    <div className="card">
-                        <a href='/'>
-                            <img src="logo512.png" className="card-img-top" alt="" />
-                        </a>
-                        <div className="card-body">
-                            <h5 className="card-title text-center">
-                                <a href='/'>Teacher Name</a>
-                            </h5>
-                        </div>
-                        <div className='card-footer'>
-                            <div className='title'>
-                                <span>Rating: 4.5/5 </span>  
-                                <span className='float-end'> Views: 1000</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {/* End Popular teachers */}
-
+            <AllFavoriteCourses />
+            <PopularCourses/>
 
             {/* student  testimonial */}
             <h1 className="pd-1 mb-4 mt-5">Student Testimonials</h1>

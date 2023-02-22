@@ -13,6 +13,9 @@ import CourseDetail from './CourseDetail';
 import About from './About';
 import TeacherDetail from './TeacherDetail';
 
+// ============================ List Pages ====================================
+import AllCourses from './AllCourses';
+
 
 // ============================ user components ===============================
 import UserDashboard from './users/UserDashboard';
@@ -34,6 +37,7 @@ import TeacherChangePassword from "./teachers/TeacherChangePassword";
 import AddCourse from "./teachers/AddCourse";
 import TeacherUserList from "./teachers/TeacherUserList";
 
+
 const Main = () => {
     return (
         <div className='App'>
@@ -47,6 +51,7 @@ const Main = () => {
                 <Route path="/courses/:course_id" element={<CourseDetail />} />
                 <Route path="/courses/:course_id" element={<CourseDetail />} />
                 <Route path="/teachers/:teacher_id" element={<TeacherDetail />} />
+                <Route path="/all-courses" element={<AllCourses />} />
 
                 {/* user dashboard paths */}
                 <Route path="/user-dashboard" element={<UserDashboard />} />

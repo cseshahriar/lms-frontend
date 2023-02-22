@@ -26,18 +26,18 @@ const TeacherRegister = () => {
                                 </div>
                                 
 
-                                <div class="mb-3">
+                                <div className="mb-3">
                                     <label for="exampleInputPassword1" className="form-label">Password</label>
                                     <input type="password" className="form-control" id="exampleInputPassword1" />
                                 </div>
 
-                                <div class="mb-3">
+                                <div className="mb-3">
                                     <label for="interest" className="form-label">Skills</label>
                                     <textarea name="interest"  className="form-control" id="interest"></textarea>
-                                    <div id="emailHelp" class="form-text">PHP, Python, JavaScript</div>
+                                    <div id="emailHelp" className="form-text">PHP, Python, JavaScript</div>
                                 </div>
 
-                                <div class="mb-3 text-center">
+                                <div className="mb-3 text-center">
                                     <button type="submit" className="btn btn-primary">Submit</button>
                                 </div>
                             

@@ -1,32 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-
+import AllCourses from './AllCourses';
 
 const Home = () => {
     return (
         <div className="container mt-4">
-            {/* latest courses */}
-            <h1 className="pd-1 mb-4">Latest Courses <a href='/' className='float-end'>See All</a></h1>
-
-            <div className="row mb-4">
-                <div className="col-md-3">
-                    <div className="card">
-                        
-                        <Link to={`/courses/${1}`}>
-                            <img src="logo512.png" className="card-img-top" alt="" />
-                        </Link>
-
-                        <div className="card-body">
-                            <h5 className="card-title text-center">
-                                <Link to={`/courses/${1}`}>Course title</Link>
-                            </h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {/* End latest courses */}
-
-
+            <AllCourses />
 
             {/* popular courses */}
             <h1 className="pd-1 mb-4 mt-5">Popular Courses <a href='/' className='float-end'>See All</a></h1>

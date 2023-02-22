@@ -45,7 +45,7 @@ const AddCourse = () => {
                                     </div>
                                 </div>
 
-                                <div class="mb-3 text-center">
+                                <div className="mb-3 text-center">
                                     <button type="submit" className="btn btn-primary">Submit</button>
                                 </div>
                             </form>

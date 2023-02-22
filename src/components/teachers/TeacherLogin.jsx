@@ -14,12 +14,12 @@ const TeacherLogin = () => {
                                     <input type="email" className="form-control" id="exampleInputEmail1"/>
                                 </div>
 
-                                <div class="mb-3">
+                                <div className="mb-3">
                                     <label for="exampleInputPassword1" className="form-label">Password</label>
                                     <input type="password" className="form-control" id="exampleInputPassword1" />
                                 </div>
 
-                                <div class="mb-3 text-center">
+                                <div className="mb-3 text-center">
                                     <button type="submit" className="btn btn-primary">Submit</button>
                                 </div>
                             </form>

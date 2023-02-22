@@ -34,7 +34,7 @@ const CourseDetail = () => {
                             <span className='me-5'>1 Hour 30 Minutes</span>
                             <button type="button"  className='btn btn-sm btn-danger float-end' 
                                 data-bs-toggle="modal" data-bs-target="#videoModal1">
-                                <i class="bi bi-youtube"></i>
+                                <i className="bi bi-youtube"></i>
                             </button>
                         </span>
 
@@ -47,7 +47,7 @@ const CourseDetail = () => {
                                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div className="modal-body">
-                                        <div class="ratio ratio-16x9">
+                                        <div className="ratio ratio-16x9">
                                             <iframe src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" title="YouTube video" allowfullscreen></iframe>
                                         </div>
                                     </div>
@@ -62,7 +62,7 @@ const CourseDetail = () => {
                             <span className='me-5'>1 Hour 30 Minutes</span>
                             <button type="button"  className='btn btn-sm btn-danger float-end' 
                                 data-bs-toggle="modal" data-bs-target="#videoModal2">
-                                <i class="bi bi-youtube"></i>
+                                <i className="bi bi-youtube"></i>
                             </button>
                         </span>
 
@@ -75,7 +75,7 @@ const CourseDetail = () => {
                                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div className="modal-body">
-                                        <div class="ratio ratio-16x9">
+                                        <div className="ratio ratio-16x9">
                                             <iframe src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" title="YouTube video" allowfullscreen></iframe>
                                         </div>
                                     </div>

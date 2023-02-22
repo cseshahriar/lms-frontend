@@ -14,7 +14,6 @@ const UserRegister = () => {
                 <div className="mb-3">
                     <label for="exampleInputEmail1" className="form-label">Email</label>
                     <input type="email" className="form-control" id="email"/>
-                    
                 </div>
 
                 <div className="mb-3">
@@ -22,16 +21,15 @@ const UserRegister = () => {
                     <input type="text" className="form-control" id="username" />
                 </div>
                 
-
-                <div class="mb-3">
+                <div className="mb-3">
                     <label for="exampleInputPassword1" className="form-label">Password</label>
                     <input type="password" className="form-control" id="exampleInputPassword1" />
                 </div>
 
-                <div class="mb-3">
+                <div className="mb-3">
                     <label for="interest" className="form-label">Interest</label>
                     <textarea name="interest"  className="form-control" id="interest"></textarea>
-                    <div id="emailHelp" class="form-text">PHP, Python, JavaScript</div>
+                    <div id="emailHelp" className="form-text">PHP, Python, JavaScript</div>
                 </div>
             
                 <button type="submit" className="btn btn-primary">Submit</button>

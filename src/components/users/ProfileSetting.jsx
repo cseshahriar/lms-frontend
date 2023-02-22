@@ -18,16 +18,16 @@ const ProfileSetting = () => {
                             <form className="row g-3">
                                 
                                 <div className="mb-3 row mt-4">
-                                    <label for="full_name" class="col-sm-2 col-form-label">Full Name</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="full_name" value="Shahriar"/>
+                                    <label for="full_name" className="col-sm-2 col-form-label">Full Name</label>
+                                    <div className="col-sm-10">
+                                        <input type="text" className="form-control" id="full_name" value="Shahriar"/>
                                     </div>
                                 </div>
 
                                 <div className="mb-3 row">
-                                    <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" readonly class="form-control" id="staticEmail" value="email@example.com"/>
+                                    <label for="staticEmail" className="col-sm-2 col-form-label">Email</label>
+                                    <div className="col-sm-10">
+                                        <input type="text" readonly className="form-control" id="staticEmail" value="email@example.com"/>
                                     </div>
                                 </div>
 
@@ -51,10 +51,8 @@ const ProfileSetting = () => {
                                     <div id="emailHelp" className="form-text">PHP, Python, JavaScript</div>
                                 </div>
 
-
-
                                 <hr />
-                                <button class="btn btn-success">Save</button>
+                                <button className="btn btn-success">Save</button>
                             </form>
                         </div>
                     </div>

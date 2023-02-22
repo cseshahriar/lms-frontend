@@ -17,22 +17,22 @@ const TeacherChangePassword = () => {
                         <div className='card-body'>
                             <form className="row g-3">
 
-                                <div class="mb-3 row mt-4">
-                                    <label for="inputPassword" class="col-sm-3 col-form-label">New Password</label>
-                                    <div class="col-sm-9">
-                                        <input type="password" class="form-control" id="inputPassword"/>
+                                <div className="mb-3 row mt-4">
+                                    <label for="inputPassword" className="col-sm-3 col-form-label">New Password</label>
+                                    <div className="col-sm-9">
+                                        <input type="password" className="form-control" id="inputPassword"/>
                                     </div>
                                 </div>
 
-                                <div class="mb-3 row">
-                                    <label for="inputPassword" class="col-sm-3 col-form-label">Confirm Password</label>
-                                    <div class="col-sm-9">
-                                        <input type="password" class="form-control" id="inputPassword"/>
+                                <div className="mb-3 row">
+                                    <label for="inputPassword" className="col-sm-3 col-form-label">Confirm Password</label>
+                                    <div className="col-sm-9">
+                                        <input type="password" className="form-control" id="inputPassword"/>
                                     </div>
                                 </div>
 
                                 <hr />
-                                <button class="btn btn-success">Save</button>
+                                <button className="btn btn-success">Save</button>
                             </form>
                         </div>
                     </div>

@@ -18,8 +18,10 @@ const TeacherLogin = () => {
                                     <label for="exampleInputPassword1" className="form-label">Password</label>
                                     <input type="password" className="form-control" id="exampleInputPassword1" />
                                 </div>
-                            
-                                <button type="submit" className="btn btn-primary">Submit</button>
+
+                                <div class="mb-3 text-center">
+                                    <button type="submit" className="btn btn-primary">Submit</button>
+                                </div>
                             </form>
                         </div>
                     </div>

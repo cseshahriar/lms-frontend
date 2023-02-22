@@ -31,6 +31,7 @@ import TeacherCourses from "./teachers/TeacherCourses";
 import TeacherProfileSetting from "./teachers/TeacherProfileSetting";
 import TeacherChangePassword from "./teachers/TeacherChangePassword";
 import AddCourse from "./teachers/AddCourse";
+import TeacherUserList from "./teachers/TeacherUserList";
 
 const Main = () => {
     return (
@@ -62,6 +63,7 @@ const Main = () => {
                 <Route path="/teacher-profile-setting" element={<TeacherProfileSetting />} />
                 <Route path="/teacher-change-password" element={<TeacherChangePassword />} />
                 <Route path="/teacher-add-course" element={<AddCourse />} />
+                <Route path="/teacher-users-list" element={<TeacherUserList />} />
                 <Route path="/logout" element={<TeacherLogin />} />
             </Routes>
 

@@ -9,7 +9,7 @@ const AllCourses = () => {
             <div className="row mb-4">
                 {/* single course */}
                 <div className="col-md-3 mb-4">
-                    <div className="card">
+                    <div className="card p-3">
                         <Link to={`/courses/${1}`}>
                             <img src="python.png" className="card-img-top" alt="" />
                         </Link>
@@ -24,7 +24,7 @@ const AllCourses = () => {
                 
                 {/* single course */}
                 <div className="col-md-3 mb-4">
-                    <div className="card">
+                    <div className="card p-3">
                         <Link to={`/courses/${1}`}>
                             <img src="django.png" className="card-img-top" alt="" />
                         </Link>
@@ -39,7 +39,7 @@ const AllCourses = () => {
 
                 {/* single course */}
                 <div className="col-md-3 mb-4">
-                    <div className="card">
+                    <div className="card p-3">
                         <Link to={`/courses/${1}`}>
                             <img src="python.png" className="card-img-top" alt="" />
                         </Link>
@@ -54,7 +54,7 @@ const AllCourses = () => {
 
                 {/* single course */}
                 <div className="col-md-3 mb-4">
-                    <div className="card">
+                    <div className="card p-3">
                         <Link to={`/courses/${1}`}>
                             <img src="django.png" className="card-img-top" alt="" />
                         </Link>

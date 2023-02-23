@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 
 const PopularTeachers = () => {
     return (
-        <div className='container mt-3'>
+        <div className='container mt-4'>
             {/* latest courses */}
-            <h1 className="pd-1 mb-4">Popular Instructors <Link to='/all-popular-teachers' className='float-end'>See All</Link></h1>
+            <h5 className="pd-1 mb-4">Popular Instructors </h5>
             <div className="row mb-4">
                 {/* single course */}
                 <div className="col-md-3 mb-4">

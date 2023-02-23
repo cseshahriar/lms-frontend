@@ -1,12 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 
 const CategoryCourses = () => {
+    let { category_slug } = useParams();
+    console.log(category_slug)
+
     return (
         <div className='container mt-3'>
             {/* latest courses */}
-            <h1 className="pd-1 mb-4">Python Courses <Link to='/all-courses' className='float-end'>See All</Link></h1>
+            <h5 className="pd-1 mb-4">Python Courses <Link to='/all-courses' className='float-end'>See All</Link></h5>
             <div className="row mb-4">
                 {/* single course */}
                 <div className="col-md-3 mb-4">

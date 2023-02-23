@@ -52,11 +52,10 @@ const Main = () => {
                 {/* website paths */}
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
-                <Route path="/courses" element={<Courses />} />
-                <Route path="/category/:category_slug" element={<CategoryCourses />} />
                 <Route path="/all-courses" element={<AllCourses />} />
-
                 <Route path="/courses/:course_id" element={<CourseDetail />} />
+                <Route path="/category/:category_slug" element={<CategoryCourses />} />
+
                 <Route path="/teachers/:teacher_id" element={<TeacherDetail />} />
                 <Route path="/all-popular-courses" element={<PopularCourses />} />
                 <Route path="/all-favorite-courses" element={<AllFavoriteCourses />} />

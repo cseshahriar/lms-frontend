@@ -15,7 +15,7 @@ const TeacherDetail = () => {
                 <div className="col-md-8">
                     <h1>Teacher Name</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam, error doloremque ipsa optio, est enim cupiditate doloribus soluta reiciendis architecto perferendis. Inventore adipisci ullam autem! Quam aperiam numquam itaque optio.</p>
-                    <p className='fw-bold'>Skills: <Link to="/skills/1">PHP</Link>, <Link to="/skills/2">Python</Link>, <Link to="/skills/2">JavaScript</Link></p>
+                    <p className='fw-bold'>Skills: <Link to="/category/php">PHP</Link>, <Link to="/category/python">Python</Link>, <Link to="/category/javascript">JavaScript</Link></p>
                     <p className='fw-bold'>Recent Courses: <Link to="/course/1">Reject Course</Link></p>
                     <p className='fw-bold'>Rating: 4.5/5</p>
                 </div>

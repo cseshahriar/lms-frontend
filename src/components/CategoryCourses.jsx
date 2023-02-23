@@ -2,17 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 
-const AllCourses = () => {
+const CategoryCourses = () => {
     return (
         <div className='container mt-3'>
             {/* latest courses */}
-            <h1 className="pd-1 mb-4">Latest Courses <Link to='/all-courses' className='float-end'>See All</Link></h1>
+            <h1 className="pd-1 mb-4">Python Courses <Link to='/all-courses' className='float-end'>See All</Link></h1>
             <div className="row mb-4">
                 {/* single course */}
                 <div className="col-md-3 mb-4">
                     <div className="card p-3">
                         <Link to={`/courses/${1}`}>
-                            <img src="python.png" className="card-img-top" alt="" />
+                            <img src="/python.png" className="card-img-top" alt="" />
                         </Link>
 
                         <div className="card-body">
@@ -34,7 +34,7 @@ const AllCourses = () => {
                 <div className="col-md-3 mb-4">
                     <div className="card p-3">
                         <Link to={`/courses/${1}`}>
-                            <img src="django.png" className="card-img-top" alt="" />
+                            <img src="/django.png" className="card-img-top" alt="" />
                         </Link>
 
                         <div className="card-body">
@@ -56,7 +56,7 @@ const AllCourses = () => {
                 <div className="col-md-3 mb-4">
                     <div className="card p-3">
                         <Link to={`/courses/${1}`}>
-                            <img src="python.png" className="card-img-top" alt="" />
+                            <img src="/python.png" className="card-img-top" alt="" />
                         </Link>
 
                         <div className="card-body">
@@ -78,7 +78,7 @@ const AllCourses = () => {
                 <div className="col-md-3 mb-4">
                     <div className="card p-3">
                         <Link to={`/courses/${1}`}>
-                            <img src="django.png" className="card-img-top" alt="" />
+                            <img src="/django.png" className="card-img-top" alt="" />
                         </Link>
 
                         <div className="card-body">
@@ -113,4 +113,4 @@ const AllCourses = () => {
     );
 };
 
-export default AllCourses;
+export default CategoryCourses;

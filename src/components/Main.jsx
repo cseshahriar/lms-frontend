@@ -2,12 +2,11 @@ import React from 'react';
 import { Routes, Route } from "react-router-dom";
 
 // ============================ components ====================================
-
 import Home from './Home';
 import Navbar from './Navbar';
 import Footer from './Footer';
-
 import CourseDetail from './CourseDetail';
+import Courses from './Courses';
 
 // ============================ pages =========================================
 import About from './About';
@@ -18,6 +17,7 @@ import AllCourses from './AllCourses';
 import PopularCourses from './PopularCourses';
 import AllFavoriteCourses from './AllFavoriteCourses';
 import PopularTeachers from './PopularTeachers';
+import CategoryCourses from './CategoryCourses';
 
 
 // ============================ user components ===============================
@@ -51,13 +51,16 @@ const Main = () => {
                 {/* website paths*/}
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
-                <Route path="/courses/:course_id" element={<CourseDetail />} />
+                <Route path="/courses" element={<Courses />} />
+                <Route path="/category/:category_slug" element={<CategoryCourses />} />
+                
+
                 <Route path="/courses/:course_id" element={<CourseDetail />} />
                 <Route path="/teachers/:teacher_id" element={<TeacherDetail />} />
                 <Route path="/all-courses" element={<AllCourses />} />
                 <Route path="/all-popular-courses" element={<PopularCourses />} />
                 <Route path="/all-favorite-courses" element={<AllFavoriteCourses />} />
-                <Route path="//all-popular-teachers" element={<PopularTeachers />} />
+                <Route path="/all-popular-teachers" element={<PopularTeachers />} />
 
                 {/* user dashboard paths */}
                 <Route path="/user-dashboard" element={<UserDashboard />} />

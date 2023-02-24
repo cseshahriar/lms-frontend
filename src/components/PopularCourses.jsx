@@ -1,7 +1,11 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom';
 
 const PopularCourses = () => {
+    useEffect(() => {
+        document.title="Popular Courses"
+    })
+
     return (
         <div className='container mt-4'>
             {/* latest courses */}

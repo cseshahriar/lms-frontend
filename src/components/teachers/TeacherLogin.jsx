@@ -1,6 +1,11 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 const TeacherLogin = () => {
+
+    useEffect(() => {
+        document.title="Teacher Login"
+    })
+
     return (
         <div className='container py-5'>
             <div className='row'>

@@ -1,7 +1,11 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Sidebar from './Sidebar';
 
 const ChangePassword = () => {
+    useEffect(() => {
+        document.title="User Change Password"
+    })
+
     return (
         <div className='container py-5'>
             <div className='row'>

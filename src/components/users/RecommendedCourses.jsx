@@ -1,8 +1,12 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import Sidebar from './Sidebar';
 
 const RecommendedCourses = () => {
+    useEffect(() => {
+        document.title="Recommended Courses"
+    })
+
     return (
         <div className='container py-5'>
             <div className='row'>

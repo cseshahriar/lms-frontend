@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import AllCourses from './AllCourses';
 import PopularCourses from './PopularCourses';
 import AllFavoriteCourses from './AllFavoriteCourses';
@@ -7,6 +7,10 @@ import {Link} from "react-router-dom";
 
 
 const Home = () => {
+    useEffect(() => {
+        document.title="LMS Home Page"
+    })
+
     return (
         <div className="container mt-4">
 

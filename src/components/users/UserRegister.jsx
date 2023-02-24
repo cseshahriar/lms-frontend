@@ -1,6 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 const UserRegister = () => {
+    useEffect(() => {
+        document.title="User Register"
+    })
+
     return (
         <div className='container py-5'>
         <div className='row'>

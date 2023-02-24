@@ -1,7 +1,11 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Sidebar from './Sidebar';
 
 const ProfileSetting = () => {
+    useEffect(() => {
+        document.title="Profile Setting"
+    })
+
     return (
         <div className='container py-5'>
             <div className='row'>

@@ -1,8 +1,12 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Sidebar from './Sidebar';
 
 
 const UserDashboard = () => {
+    useEffect(() => {
+        document.title="User Dashboard"
+    })
+
     return (
         <div className='container py-5'>
             <div className='row'>

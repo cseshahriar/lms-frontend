@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Link, useNavigate } from "react-router-dom";
 
 const TeacherRegister = () => {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        document.title="Teacher Register"
+    })
+
     return (
         <div className='container py-5'>
             <div className='row'>

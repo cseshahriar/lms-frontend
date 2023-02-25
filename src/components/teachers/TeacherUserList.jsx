@@ -1,8 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import TeacherSidebar from './TeacherSidebar';
+import {isTeacherAuthenticated} from "../../functions";
 
 const TeacherUserList = () => {
+    useEffect(() => {
+        isTeacherAuthenticated();
+    })
+
     return (
         <div className='container py-5'>
             <div className='row'>

@@ -35,10 +35,9 @@ const TeacherLogin = () => {
                 teacherLoginFormData,
             )
             .then((response) => {
-                console.log('response', response)
                 if(response.data.bool == true) {
                     localStorage.setItem('teacherLoginStatus', true)
-                    isTeacherAuthenticated()
+                    window.location.href = '/teacher-dashboard'
                 }
             })
         } catch (error) {

@@ -1,11 +1,12 @@
 import React, {useEffect} from 'react';
 import TeacherSidebar from './TeacherSidebar';
+import {isTeacherAuthenticated} from "../../functions";
 
 
 const TeacherDashboard = () => {
-
     useEffect(() => {
         document.title="Teacher Login"
+        isTeacherAuthenticated();
     })
 
     return (

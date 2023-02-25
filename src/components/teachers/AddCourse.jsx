@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import TeacherSidebar from "./TeacherSidebar";
+import {isTeacherAuthenticated} from "../../functions";
 
 const AddCourse = () => {
+    useEffect(() => {
+        isTeacherAuthenticated();
+    })
     return (
 
         <div className='container py-5'>

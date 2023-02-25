@@ -6,7 +6,12 @@ import {isTeacherAuthenticated} from "../../functions";
 const TeacherRegister = () => {
     useEffect(() => {
         document.title="Teacher Register"
-        isTeacherAuthenticated()
+
+        // if already logged in redirect to dashboard
+        const teacherLoginStatus = localStorage.getItem('teacherLoginStatus')
+        if(teacherLoginStatus == 'true') {
+            window.location.href = '/teacher-dashboard'
+        }
     })
 
     const navigate = useNavigate();

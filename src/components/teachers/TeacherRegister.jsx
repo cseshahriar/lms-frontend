@@ -1,8 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import {isTeacherAuthenticated} from "../../functions";
 
 const TeacherRegister = () => {
+    useEffect(() => {
+        document.title="Teacher Register"
+        isTeacherAuthenticated()
+    })
+
     const navigate = useNavigate();
     // states
     const [error, setError] = useState(null);
@@ -63,9 +69,6 @@ const TeacherRegister = () => {
         }
     }
 
-    useEffect(() => {
-        document.title="Teacher Register"
-    })
 
     return (
         <div className='container py-5'>

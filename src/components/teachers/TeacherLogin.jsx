@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import {isTeacherAuthenticated} from "../../functions";
 
 
 const TeacherLogin = () => {
@@ -37,7 +38,7 @@ const TeacherLogin = () => {
                 console.log('response', response)
                 if(response.data.bool == true) {
                     localStorage.setItem('teacherLoginStatus', true)
-                    navigate('/teacher-dashboard')
+                    isTeacherAuthenticated()
                 }
             })
         } catch (error) {

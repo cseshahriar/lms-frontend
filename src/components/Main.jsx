@@ -40,6 +40,7 @@ import TeacherProfileSetting from "./teachers/TeacherProfileSetting";
 import TeacherChangePassword from "./teachers/TeacherChangePassword";
 import AddCourse from "./teachers/AddCourse";
 import TeacherUserList from "./teachers/TeacherUserList";
+import TeacherLogout from "./teachers/TeacherLogout";
 
 
 const Main = () => {
@@ -82,7 +83,7 @@ const Main = () => {
                 <Route path="/teacher-change-password" element={<TeacherChangePassword />} />
                 <Route path="/teacher-add-course" element={<AddCourse />} />
                 <Route path="/teacher-users-list" element={<TeacherUserList />} />
-                <Route path="/logout" element={<TeacherLogin />} />
+                <Route path="/teacher-logout" element={<TeacherLogout />} />
             </Routes>
 
             <Footer/>

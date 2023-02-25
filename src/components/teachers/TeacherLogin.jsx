@@ -47,10 +47,6 @@ const TeacherLogin = () => {
 
     useEffect(() => {
         document.title="Teacher Login"
-        const teacherLoginStatus = localStorage.getItem('teacherLoginStatus')
-        if(teacherLoginStatus == 'true') {
-            navigate('/teacher-dashboard');
-        }
     })
 
     return (

@@ -58,8 +58,6 @@ const AddCourse = () => {
         _formData.append('featured_img', courseData.featured_img)
         _formData.append('technologies', courseData.technologies)
 
-        console.log(_formData)
-
         try {
             axios.post(
                 `${process.env.REACT_APP_API_BASE_URL}/api/courses/`,
@@ -78,7 +76,7 @@ const AddCourse = () => {
                     'description': '',
                     'course_video': '',
                     'technologies': '',
-                    'featured_img': null,
+                    'featured_img': '',
                     'status': 'success'
                 })
                 setIsAlertVisible(true);
@@ -144,7 +142,7 @@ const AddCourse = () => {
                                 <div className="mb-3 row">
                                     <label htmlFor="featured_img" className="col-sm-2 col-form-label">Featured Image</label>
                                     <div className="col-sm-10">
-                                        <input type="file" name="featured_img" className="form-control" id="featured_img" name='course_video'  onChange={handleFileChange} />
+                                        <input type="file" name="featured_img" className="form-control" id="featured_img"  onChange={handleFileChange} />
                                     </div>
                                 </div>
 

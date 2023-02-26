@@ -7,13 +7,15 @@ import axios from 'axios';
 
 
 const TeacherCourses = () => {
+    const user_id = localStorage.getItem('user_id')
+
     const [courses, setCourses] = useState([]);
 
     useEffect(() => {
         isTeacherAuthenticated();
         try {
             axios.get(
-                `${process.env.REACT_APP_API_BASE_URL}/api/teacher/1/courses/`,
+                `${process.env.REACT_APP_API_BASE_URL}/api/teacher/${user_id}/courses/`,
             )
             .then((response) => {
                 setCourses(response.data)

@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
 
     const teacherLoginStatus = localStorage.getItem('teacherLoginStatus')
-
-    const user_id = localStorage.getItem('user_id')
     const user_name = localStorage.getItem('user_name')
 
 

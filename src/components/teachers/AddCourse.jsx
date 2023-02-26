@@ -6,6 +6,7 @@ import axios from "axios";
 import {useNavigate} from "react-router-dom";
 
 const AddCourse = () => {
+    const user_id = localStorage.getItem('user_id')
     const navigate = useNavigate();
 
     // states
@@ -52,7 +53,7 @@ const AddCourse = () => {
         e.preventDefault();
         const _formData = new FormData();
         _formData.append('category', courseData.category)
-        _formData.append('teacher', 1)
+        _formData.append('teacher', user_id)
         _formData.append('title', courseData.title)
         _formData.append('description', courseData.description)
         _formData.append('featured_img', courseData.featured_img)

@@ -1,12 +1,27 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import TeacherSidebar from './TeacherSidebar';
 import {isTeacherAuthenticated} from "../../functions";
 
+import axios from 'axios';
+
+
 const TeacherCourses = () => {
+    const [courses, setCourses] = useState([]);
+
     useEffect(() => {
         isTeacherAuthenticated();
-    })
+        try {
+            axios.get(
+                `${process.env.REACT_APP_API_BASE_URL}/api/teacher/1/courses/`,
+            )
+            .then((response) => {
+                setCourses(response.data)
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }, [])
 
     return (
         <div className='container py-5'>
@@ -32,16 +47,21 @@ const TeacherCourses = () => {
                                 </thead>
 
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Python Development</td>
-                                        <td>
-                                            <Link to={`/teachers/${1}`}>Shahriar Hosen</Link>
-                                        </td>
-                                        <td>
-                                            <button className='btn btn-sm btn-danger'>Delete</button>
-                                        </td>
-                                    </tr>
+                                    {
+                                        courses && courses.map((course, index) => (
+                                            <tr key={index}>
+                                                <td>{ index }</td>
+                                                <td>{ course.title }</td>
+                                                <td>
+                                                    <Link to={`/teachers/${1}`}>{ course.teacher.full_name }</Link>
+                                                </td>
+                                                <td>
+                                                    <button className='btn btn-sm btn-danger'>Delete</button>
+                                                </td>
+                                            </tr>
+                                        ))
+                                    }
+                                   
                                 </tbody>
                             </table>
                         </div>

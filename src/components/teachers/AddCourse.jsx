@@ -52,7 +52,7 @@ const AddCourse = () => {
         e.preventDefault();
         const _formData = new FormData();
         _formData.append('category', courseData.category)
-        _formData.append('teacher', 20)
+        _formData.append('teacher', 1)
         _formData.append('title', courseData.title)
         _formData.append('description', courseData.description)
         _formData.append('featured_img', courseData.featured_img)

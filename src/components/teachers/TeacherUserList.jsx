@@ -6,7 +6,7 @@ import {isTeacherAuthenticated} from "../../functions";
 const TeacherUserList = () => {
     useEffect(() => {
         isTeacherAuthenticated();
-    })
+    }, [])
 
     return (
         <div className='container py-5'>

@@ -1,13 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import {isTeacherAuthenticated} from "../../functions";
-
 
 const TeacherLogin = () => {
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState('');
-    const [ isAlertVisible, setIsAlertVisible ] = React.useState(false);
+    const [ isAlertVisible, setIsAlertVisible ] = useState(false);
 
     const [teacherLoginData, setTeacherLoginData] = useState({
         'email': '',
@@ -26,22 +24,20 @@ const TeacherLogin = () => {
         const teacherLoginFormData = new FormData();
         teacherLoginFormData.append('email', teacherLoginData.email)
         teacherLoginFormData.append('password', teacherLoginData.password)
+
         // post to backend
         axios.post(
             `${process.env.REACT_APP_API_BASE_URL}/api/teachers/login/`,
             teacherLoginFormData,
         )
         .then((response) => {
-            console.log('response', response)
-            if (response.status === 200) {
-                localStorage.setItem('teacherLoginStatus', true)
-                localStorage.setItem('user_id', response.data.teacher_id)
-                localStorage.setItem('user_name', response.data.teacher_full_name)
-                window.location.href = '/teacher-dashboard'
-            }
+            localStorage.setItem('teacherLoginStatus', true)
+            localStorage.setItem('user_id', response.data.teacher_id)
+            localStorage.setItem('user_name', response.data.teacher_full_name)
+            // window.location.href = '/teacher-dashboard';
+            navigate('/teacher-dashboard')
         })
         .catch(error => {
-            console.log('error', error.response.data.error)
             setErrorMessage(error.response.data.error);
         });
     }

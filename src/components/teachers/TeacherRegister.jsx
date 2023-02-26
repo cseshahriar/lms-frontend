@@ -12,7 +12,7 @@ const TeacherRegister = () => {
         if(teacherLoginStatus == 'true') {
             window.location.href = '/teacher-dashboard'
         }
-    })
+    }, [])
 
     const navigate = useNavigate();
     // states

@@ -1,16 +1,14 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
-
     const teacherLoginStatus = localStorage.getItem('teacherLoginStatus')
     const user_name = localStorage.getItem('user_name')
-
 
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark" id='navbar'>
             <div className="container">
-            
+
                 <Link className="navbar-brand" to="/">Learning Management System</Link>
 
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

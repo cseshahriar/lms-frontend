@@ -55,7 +55,7 @@ const TeacherCourses = () => {
                                                 <td>{ index }</td>
                                                 <td>{ course.title }</td>
                                                 <td>
-                                                    <Link to={`/teachers/${1}`}>{ course.teacher.full_name }</Link>
+                                                    <Link to={`/teachers/${user_id}`}>{ course.teacher.full_name }</Link>
                                                 </td>
                                                 <td>
                                                     <button className='btn btn-sm btn-danger'>Delete</button>

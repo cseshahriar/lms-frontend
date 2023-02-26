@@ -7,16 +7,18 @@ import {useNavigate} from "react-router-dom";
 
 const AddCourse = () => {
     const user_id = localStorage.getItem('user_id')
+    console.log('user id', user_id);
+
     const navigate = useNavigate();
 
     // states
     const [error, setError] = useState(null);
-    const [ isAlertVisible, setIsAlertVisible ] = React.useState(false);
+    const [ isAlertVisible, setIsAlertVisible ] = useState(false);
     const [categories, setCategories] = useState([]);
 
     const [courseData, setCourseData] = useState({
         'category': '',
-        'teacher': '',
+        'teacher': parseInt(user_id),
         'title': '',
         'description': '',
         'technologies': '',
@@ -27,6 +29,8 @@ const AddCourse = () => {
     useEffect(() => {
         // auth check
         isTeacherAuthenticated();
+
+        // fetch
         try {
             axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/categories/`)
                 .then(response => {
@@ -35,7 +39,8 @@ const AddCourse = () => {
         } catch (error) {
             console.log(error);
         }
-    }, [ ])
+
+    }, [user_id, ])
 
     const handleChange = (event) => {
         setCourseData({
@@ -53,7 +58,7 @@ const AddCourse = () => {
         e.preventDefault();
         const _formData = new FormData();
         _formData.append('category', courseData.category)
-        _formData.append('teacher', user_id)
+        _formData.append('teacher', courseData.teacher)
         _formData.append('title', courseData.title)
         _formData.append('description', courseData.description)
         _formData.append('featured_img', courseData.featured_img)
@@ -105,9 +110,9 @@ const AddCourse = () => {
                     <div className='card'>
                         {
                             isAlertVisible &&
-                            courseData.status == 'success' && <p className="text-success" id="success">Thanks for your registration</p>
+                            courseData.status === 'success' && <p className="text-success" id="success">Thanks for your registration</p>
                         }
-                        { courseData.status == 'error' && <p className="text-danger">Something went wrong! Please try again.</p>}
+                        { courseData.status === 'error' && <p className="text-danger">Something went wrong! Please try again.</p>}
 
 
                         <h5 className="card-header">Add Course</h5>
@@ -116,7 +121,8 @@ const AddCourse = () => {
                                 <div className="mb-3 row">
                                     <label htmlFor="category" className="col-sm-2 col-form-label">Category</label>
                                     <div className="col-sm-10">
-                                        <select className="form-select" name='category' onChange={handleChange}>
+                                        <select required className="form-select" name='category' onChange={handleChange}>
+                                            <option value="" disabled>Select Category</option>
                                             {
                                                 categories && categories.map((category) => (
                                                     <option key={category.id} value={category.id}>{category.title}</option>
@@ -129,28 +135,28 @@ const AddCourse = () => {
                                 <div className="mb-3 row">
                                     <label htmlFor="title" className="col-sm-2 col-form-label">Title</label>
                                     <div className="col-sm-10">
-                                        <input type="text" className="form-control" id="title" name='title' value={courseData.title} onChange={handleChange} />
+                                        <input required type="text" className="form-control" id="title" name='title' value={courseData.title} onChange={handleChange} />
                                     </div>
                                 </div>
 
                                 <div className="mb-3 row">
                                     <label htmlFor="description" className="col-sm-2 col-form-label">Description</label>
                                     <div className="col-sm-10">
-                                        <textarea name="description" className="form-control" id="description" name='description' value={courseData.description} onChange={handleChange}></textarea>
+                                        <textarea required name="description" className="form-control" id="description" value={courseData.description} onChange={handleChange}></textarea>
                                     </div>
                                 </div>
 
                                 <div className="mb-3 row">
                                     <label htmlFor="featured_img" className="col-sm-2 col-form-label">Featured Image</label>
                                     <div className="col-sm-10">
-                                        <input type="file" name="featured_img" className="form-control" id="featured_img"  onChange={handleFileChange} />
+                                        <input required type="file" name="featured_img" className="form-control" id="featured_img"  onChange={handleFileChange} />
                                     </div>
                                 </div>
 
                                 <div className="mb-3 row">
                                     <label htmlFor="technologies" className="col-sm-2 col-form-label">Technologies</label>
                                     <div className="col-sm-10">
-                                        <textarea name="technologies" className="form-control" id="technologies" name='technologies' value={courseData.technologies} onChange={handleChange}></textarea>
+                                        <textarea required name="technologies" className="form-control" id="technologies" value={courseData.technologies} onChange={handleChange}></textarea>
                                     </div>
                                 </div>
 

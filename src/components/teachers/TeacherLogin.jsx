@@ -35,8 +35,11 @@ const TeacherLogin = () => {
                 teacherLoginFormData,
             )
             .then((response) => {
-                if(response.data.bool == true) {
+                if(response.data) {
                     localStorage.setItem('teacherLoginStatus', true)
+                    localStorage.setItem('user_id', response.data.teacher_id)
+                    localStorage.setItem('user_name', response.data.teacher_full_name)
+
                     window.location.href = '/teacher-dashboard'
                 }
             })

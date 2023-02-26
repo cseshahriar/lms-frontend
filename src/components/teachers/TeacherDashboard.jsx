@@ -4,6 +4,7 @@ import {isTeacherAuthenticated} from "../../functions";
 
 
 const TeacherDashboard = () => {
+
     useEffect(() => {
         document.title="Teacher Dashboard"
         isTeacherAuthenticated();

@@ -1,7 +1,10 @@
 import React from 'react';
-import { useNavigate } from "react-router-dom";
+
 const TeacherLogout = () => {
     localStorage.removeItem('teacherLoginStatus')
+    localStorage.removeItem('user_id')
+    localStorage.removeItem('user_name')
+
     window.location.href = '/teacher-login'
     return (
         <div></div>

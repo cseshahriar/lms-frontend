@@ -5,6 +5,10 @@ const Navbar = () => {
 
     const teacherLoginStatus = localStorage.getItem('teacherLoginStatus')
 
+    const user_id = localStorage.getItem('user_id')
+    const user_name = localStorage.getItem('user_name')
+
+
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark" id='navbar'>
             <div className="container">
@@ -32,7 +36,7 @@ const Navbar = () => {
                         {/* teachers urls */}
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown"
-                               aria-expanded="false"><i className="bi bi-person-circle"></i> Teacher Name</a>
+                               aria-expanded="false"><i className="bi bi-person-circle"></i> { user_name && user_name }</a>
                             <ul className="dropdown-menu">
                                 {
                                     teacherLoginStatus && teacherLoginStatus == 'true' ?

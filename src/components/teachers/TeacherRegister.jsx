@@ -35,7 +35,6 @@ const TeacherRegister = () => {
             ...teacherData, [event.target.name]: event.target.value
         })
     }
-    console.log('teacher data', teacherData)
 
     // submit form function
     const submitForm = (e) => {

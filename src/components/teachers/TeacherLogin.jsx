@@ -6,8 +6,7 @@ import {isTeacherAuthenticated} from "../../functions";
 
 const TeacherLogin = () => {
     const navigate = useNavigate();
-
-    const [error, setError] = useState(null);
+    const [errorMessage, setErrorMessage] = useState('');
     const [ isAlertVisible, setIsAlertVisible ] = React.useState(false);
 
     const [teacherLoginData, setTeacherLoginData] = useState({
@@ -27,30 +26,29 @@ const TeacherLogin = () => {
         const teacherLoginFormData = new FormData();
         teacherLoginFormData.append('email', teacherLoginData.email)
         teacherLoginFormData.append('password', teacherLoginData.password)
-
-        try {
-            // post to backend
-            axios.post(
-                `${process.env.REACT_APP_API_BASE_URL}/api/teachers/login/`,
-                teacherLoginFormData,
-            )
-            .then((response) => {
-                if(response.data) {
-                    localStorage.setItem('teacherLoginStatus', true)
-                    localStorage.setItem('user_id', response.data.teacher_id)
-                    localStorage.setItem('user_name', response.data.teacher_full_name)
-
-                    window.location.href = '/teacher-dashboard'
-                }
-            })
-        } catch (error) {
-            console.log(error)
-        }
+        // post to backend
+        axios.post(
+            `${process.env.REACT_APP_API_BASE_URL}/api/teachers/login/`,
+            teacherLoginFormData,
+        )
+        .then((response) => {
+            console.log('response', response)
+            if (response.status === 200) {
+                localStorage.setItem('teacherLoginStatus', true)
+                localStorage.setItem('user_id', response.data.teacher_id)
+                localStorage.setItem('user_name', response.data.teacher_full_name)
+                window.location.href = '/teacher-dashboard'
+            }
+        })
+        .catch(error => {
+            console.log('error', error.response.data.error)
+            setErrorMessage(error.response.data.error);
+        });
     }
 
     useEffect(() => {
         document.title="Teacher Login"
-    })
+    }, [])
 
     return (
         <div className='container py-5'>
@@ -60,6 +58,9 @@ const TeacherLogin = () => {
                         <h3 className='card-header'>Teacher Login</h3>
                         <div className='card-body'>
                             <form>
+
+                                <div className="text-danger text-center">{errorMessage}</div>
+
                                 <div className="mb-3">
                                     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
                                     <input type="email" name="email" value={teacherLoginData.email} onChange={handleChange} className="form-control" id="exampleInputEmail1"/>

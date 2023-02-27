@@ -6,8 +6,7 @@ const TeacherLogout = () => {
     localStorage.removeItem('teacherLoginStatus')
     localStorage.removeItem('user_id')
     localStorage.removeItem('user_name')
-    navigate('/teacher-login')
-
+    window.location.href = '/teacher-login';
     return (
         <div></div>
     );

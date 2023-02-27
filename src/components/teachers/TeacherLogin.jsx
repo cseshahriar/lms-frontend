@@ -34,8 +34,7 @@ const TeacherLogin = () => {
             localStorage.setItem('teacherLoginStatus', true)
             localStorage.setItem('user_id', response.data.teacher_id)
             localStorage.setItem('user_name', response.data.teacher_full_name)
-            // window.location.href = '/teacher-dashboard';
-            navigate('/teacher-dashboard')
+            window.location.href = '/teacher-dashboard';
         })
         .catch(error => {
             setErrorMessage(error.response.data.error);

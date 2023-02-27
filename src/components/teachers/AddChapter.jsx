@@ -11,9 +11,8 @@ const AddChapter = () => {
     const navigate = useNavigate();
 
     // states
-    const [error, setError] = useState(null);
+    const [errors, setErrors] = useState([]);
     const [ isAlertVisible, setIsAlertVisible ] = useState(false);
-    const [categories, setCategories] = useState([]);
 
     const [chapterData, setChapterData] = useState({
         'course': '',
@@ -26,18 +25,7 @@ const AddChapter = () => {
     useEffect(() => {
         // auth check
         isTeacherAuthenticated();
-
-        // fetch
-        try {
-            axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/categories/`)
-                .then(response => {
-                    setCategories(response.data)
-                })
-        } catch (error) {
-            console.log(error);
-        }
-
-    }, [user_id, ])
+    }, [])
 
     const handleChange = (event) => {
         setChapterData({
@@ -62,7 +50,7 @@ const AddChapter = () => {
 
         try {
             axios.post(
-                `${process.env.REACT_APP_API_BASE_URL}/api/chapter/`,
+                `${process.env.REACT_APP_API_BASE_URL}/api/courses/${parseInt(course_id)}/chapters/`,
                 _formData,
                 {
                     headers: {
@@ -70,21 +58,18 @@ const AddChapter = () => {
                     }
                 }
             ).then((response) => {
-                console.log(response.data)
                 setChapterData({
+                    'course': '',
                     'title': '',
                     'description': '',
                     'video': '',
                     'remarks': '',
                 })
                 setIsAlertVisible(true);
-                setTimeout(function () {
-                    setIsAlertVisible(false);
-                    navigate('/teacher-courses');
-                }, 3000);
+                navigate('/teacher-courses');
             })
         } catch (error) {
-            setError(error);
+            console.log(error);
         }
     }
 
@@ -103,9 +88,6 @@ const AddChapter = () => {
                             isAlertVisible &&
                             chapterData.status === 'success' && <p className="text-success" id="success">Thanks for your registration</p>
                         }
-                        { chapterData.status === 'error' && <p className="text-danger">Something went wrong! Please try again.</p>}
-
-
                         <h5 className="card-header">Add Chapter</h5>
                         <div className='card-body'>
                             <form>
@@ -118,7 +100,7 @@ const AddChapter = () => {
                                 </div>
 
                                 <div className="mb-3 row">
-                                    <label htmlFor="description" className="col-sm-2 col-form-label">Title</label>
+                                    <label htmlFor="description" className="col-sm-2 col-form-label">Description</label>
                                     <div className="col-sm-10">
                                         <textarea name='description' className='form-control' id='description' value={chapterData.description} onChange={handleChange}></textarea>
                                     </div>
@@ -127,7 +109,7 @@ const AddChapter = () => {
                                 <div className="mb-3 row">
                                     <label htmlFor="video" className="col-sm-2 col-form-label">Video</label>
                                     <div className="col-sm-10">
-                                        <textarea required name="video" className="form-control" id="video" value={chapterData.description} onChange={handleChange}></textarea>
+                                        <input type='file' required name="video" className="form-control" id="video" onChange={handleFileChange} />
                                     </div>
                                 </div>
 

@@ -63,8 +63,8 @@ const TeacherCourses = () => {
                                                 </td>
                                                 <td>
                                                     <div className="d-grid gap-2 d-md-block">
-                                                        <button className='btn btn-sm btn-danger mr-1'>Delete</button>
-                                                        <button className='btn btn-sm btn-primary'> Add Lesson</button>
+                                                        <button className='btn btn-sm btn-danger'>Delete</button>
+                                                        <Link className='btn btn-sm btn-primary ms-2' to={`/add-chapter/${course.id}`}> Add Chapter</Link>
                                                     </div>
                                                 </td>
                                             </tr>

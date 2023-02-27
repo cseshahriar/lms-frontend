@@ -42,6 +42,7 @@ const TeacherCourses = () => {
                                 <thead>
                                     <tr>
                                         <th>SL</th>
+                                        <th>Image</th>
                                         <th>Name</th>
                                         <th>Created By</th>
                                         <th>Action</th>
@@ -53,12 +54,18 @@ const TeacherCourses = () => {
                                         courses && courses.map((course, index) => (
                                             <tr key={index}>
                                                 <td>{ index }</td>
+                                                <td>
+                                                    <img src={course.featured_img} alt={course.title} style={{width:'80px'}} className="rounded" />
+                                                </td>
                                                 <td>{ course.title }</td>
                                                 <td>
                                                     <Link to={`/teachers/${user_id}`}>{ course.teacher.full_name }</Link>
                                                 </td>
                                                 <td>
-                                                    <button className='btn btn-sm btn-danger'>Delete</button>
+                                                    <div className="d-grid gap-2 d-md-block">
+                                                        <button className='btn btn-sm btn-danger mr-1'>Delete</button>
+                                                        <button className='btn btn-sm btn-primary'> Add Lesson</button>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         ))

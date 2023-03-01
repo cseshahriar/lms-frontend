@@ -42,6 +42,7 @@ import AddCourse from "./teachers/AddCourse";
 import TeacherUserList from "./teachers/TeacherUserList";
 import TeacherLogout from "./teachers/TeacherLogout";
 import AddChapter from "./teachers/AddChapter";
+import AllChapters from "./teachers/AllChapters";
 
 
 const Main = () => {
@@ -57,6 +58,8 @@ const Main = () => {
                 <Route path="/about" element={<About />} />
                 <Route path="/all-courses" element={<AllCourses />} />
                 <Route path="/courses/:course_id" element={<CourseDetail />} />
+                <Route path="/courses/:course_id/chapters" element={<AllChapters />} />
+
                 <Route path="/category/:category_slug" element={<CategoryCourses />} />
 
                 <Route path="/teachers/:teacher_id" element={<TeacherDetail />} />

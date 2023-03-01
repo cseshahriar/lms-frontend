@@ -1,7 +1,9 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from "axios";
 
-
+import Loader from "./Loader";
+import Messages from "./Messages";
 const AllCourses = () => {
 
     useEffect(() => {
@@ -28,13 +30,13 @@ const AllCourses = () => {
 
                         <div className='card-footer'>
                             <div className='title'>
-                                <span>Rating: 4.5/5 </span>  
+                                <span>Rating: 4.5/5 </span>
                                 <span className='float-end'> Views: 1000</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
                 {/* single course */}
                 <div className="col-md-3 mb-4">
                     <div className="card p-3">
@@ -50,7 +52,7 @@ const AllCourses = () => {
 
                         <div className='card-footer'>
                             <div className='title'>
-                                <span>Rating: 4.5/5 </span>  
+                                <span>Rating: 4.5/5 </span>
                                 <span className='float-end'> Views: 1000</span>
                             </div>
                         </div>
@@ -72,7 +74,7 @@ const AllCourses = () => {
 
                         <div className='card-footer'>
                             <div className='title'>
-                                <span>Rating: 4.5/5 </span>  
+                                <span>Rating: 4.5/5 </span>
                                 <span className='float-end'> Views: 1000</span>
                             </div>
                         </div>
@@ -94,7 +96,7 @@ const AllCourses = () => {
 
                         <div className='card-footer'>
                             <div className='title'>
-                                <span>Rating: 4.5/5 </span>  
+                                <span>Rating: 4.5/5 </span>
                                 <span className='float-end'> Views: 1000</span>
                             </div>
                         </div>

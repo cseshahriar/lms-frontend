@@ -1,16 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const TeacherLogin = () => {
-    const navigate = useNavigate();
-    const [errorMessage, setErrorMessage] = useState('');
-    const [ isAlertVisible, setIsAlertVisible ] = useState(false);
 
+    const [errorMessage, setErrorMessage] = useState('');
     const [teacherLoginData, setTeacherLoginData] = useState({
         'email': '',
         'password': '',
-        'status': ''
     });
 
     const handleChange = (event) => {
@@ -31,6 +27,7 @@ const TeacherLogin = () => {
             teacherLoginFormData,
         )
         .then((response) => {
+            console.log('response', response.data)
             localStorage.setItem('teacherLoginStatus', true)
             localStorage.setItem('user_id', response.data.teacher_id)
             localStorage.setItem('user_name', response.data.teacher_full_name)
@@ -53,9 +50,7 @@ const TeacherLogin = () => {
                         <h3 className='card-header'>Teacher Login</h3>
                         <div className='card-body'>
                             <form>
-
-                                <div className="text-danger text-center">{errorMessage}</div>
-
+                                { errorMessage && <div className="text-danger text-center">{errorMessage}</div> }
                                 <div className="mb-3">
                                     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
                                     <input type="email" name="email" value={teacherLoginData.email} onChange={handleChange} className="form-control" id="exampleInputEmail1"/>

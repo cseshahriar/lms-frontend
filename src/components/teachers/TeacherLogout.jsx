@@ -1,8 +1,6 @@
-import React, { useEffect} from 'react';
-import { useNavigate } from "react-router-dom";
+import React from 'react';
 
 const TeacherLogout = () => {
-    const navigate = useNavigate();
     localStorage.removeItem('teacherLoginStatus')
     localStorage.removeItem('user_id')
     localStorage.removeItem('user_name')

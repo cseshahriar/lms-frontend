@@ -2,9 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import TeacherSidebar from './TeacherSidebar';
 import {isTeacherAuthenticated} from "../../functions";
-
 import axios from 'axios';
-
 
 const TeacherCourses = () => {
     const user_id = localStorage.getItem('user_id')
@@ -23,7 +21,7 @@ const TeacherCourses = () => {
         } catch (error) {
             console.log(error)
         }
-    }, [])
+    }, [user_id])
 
     return (
         <div className='container py-5'>
@@ -38,26 +36,27 @@ const TeacherCourses = () => {
                     <div className='card'>
                         <h5 className='card-header'>My Courses</h5>
                         <div className='card-body'>
-                            <table className='table table-bordered'>
-                                <thead>
+                            <div className='table-responsive'>
+                                <table className='table table-bordered'>
+                                    <thead>
                                     <tr>
                                         <th>SL</th>
-                                        <th>Image</th>
+                                        <th>Course</th>
                                         <th>Name</th>
                                         <th>Created By</th>
                                         <th>Action</th>
                                     </tr>
-                                </thead>
+                                    </thead>
 
-                                <tbody>
+                                    <tbody>
                                     {
                                         courses && courses.map((course, index) => (
                                             <tr key={index}>
-                                                <td>{ index }</td>
+                                                <td>{ index + 1 }</td>
                                                 <td>
                                                     <img src={course.featured_img} alt={course.title} style={{width:'80px'}} className="rounded" />
                                                 </td>
-                                                <td>{ course.title }</td>
+                                                <td><Link to={`/courses/${course.id}/chapters/`}>{ course.title }</Link></td>
                                                 <td>
                                                     <Link to={`/teachers/${user_id}`}>{ course.teacher.full_name }</Link>
                                                 </td>
@@ -70,8 +69,9 @@ const TeacherCourses = () => {
                                             </tr>
                                         ))
                                     }
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </section>

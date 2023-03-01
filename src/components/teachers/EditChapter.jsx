@@ -4,6 +4,7 @@ import { isTeacherAuthenticated } from "../../functions";
 
 import axios from "axios";
 import {redirect, useNavigate, useParams} from "react-router-dom";
+import Swal from "sweetalert2";
 
 const EditChapter = () => {
     const navigate = useNavigate();
@@ -94,6 +95,17 @@ const EditChapter = () => {
                     'remarks': '',
                 })
                 setIsAlertVisible(true);
+                if(response.status == 200) {
+                    Swal.fire({
+                        title: 'Data has been updated',
+                        icon: 'success',
+                        toast: true,
+                        timer: 3000,
+                        position: 'top-right',
+                        timerProgressBar: true,
+                        showCancelButton: false
+                    })
+                }
                 navigate('/teacher-courses');
             })
         } catch (error) {

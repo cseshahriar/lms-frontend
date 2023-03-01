@@ -4,6 +4,7 @@ import { isTeacherAuthenticated } from "../../functions";
 
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const AddChapter = () => {
     const { course_id } = useParams();
@@ -66,6 +67,18 @@ const AddChapter = () => {
                     'remarks': '',
                 })
                 setIsAlertVisible(true);
+                if(response.status == 200) {
+                    Swal.fire({
+                        title: 'Data has been created',
+                        icon: 'success',
+                        toast: true,
+                        timer: 3000,
+                        position: 'top-right',
+                        timerProgressBar: true,
+                        showCancelButton: false
+                    })
+                }
+
                 navigate('/teacher-courses');
             })
         } catch (error) {

@@ -43,6 +43,7 @@ import TeacherUserList from "./teachers/TeacherUserList";
 import TeacherLogout from "./teachers/TeacherLogout";
 import AddChapter from "./teachers/AddChapter";
 import AllChapters from "./teachers/AllChapters";
+import EditChapter from "./teachers/EditChapter";
 
 
 const Main = () => {
@@ -58,8 +59,6 @@ const Main = () => {
                 <Route path="/about" element={<About />} />
                 <Route path="/all-courses" element={<AllCourses />} />
                 <Route path="/courses/:course_id" element={<CourseDetail />} />
-                <Route path="/courses/:course_id/chapters" element={<AllChapters />} />
-
                 <Route path="/category/:category_slug" element={<CategoryCourses />} />
 
                 <Route path="/teachers/:teacher_id" element={<TeacherDetail />} />
@@ -85,8 +84,12 @@ const Main = () => {
                 <Route path="/teacher-courses" element={<TeacherCourses />} />
                 <Route path="/teacher-profile-setting" element={<TeacherProfileSetting />} />
                 <Route path="/teacher-change-password" element={<TeacherChangePassword />} />
+
                 <Route path="/teacher-add-course" element={<AddCourse />} />
+                <Route path="/courses/:course_id/chapters" element={<AllChapters />} />
                 <Route path="/courses/:course_id/add-chapter/" element={<AddChapter />} />
+                <Route path="/chapters/:chapter_id/edit/" element={<EditChapter />} />
+
                 <Route path="/teacher-users-list" element={<TeacherUserList />} />
                 <Route path="/teacher-logout" element={<TeacherLogout />} />
             </Routes>

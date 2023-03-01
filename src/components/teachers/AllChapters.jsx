@@ -49,7 +49,31 @@ const AllChapters = () => {
         .then((result) => {
             if (result['isConfirmed']){
                 // Put your function here
-                navigate(`/chapters/${id}/delete/`);
+                try {
+                    axios.delete(
+                        `${process.env.REACT_APP_API_BASE_URL}/api/chapters/${parseInt(id)}/`,
+                        {
+                            headers: {
+                                'content-type': 'multipart/form-data'
+                            }
+                        }
+                    ).then((response) => {
+                        if(response.status == 204) {
+                            Swal.fire({
+                                title: 'Data has been deleted',
+                                icon: 'success',
+                                toast: true,
+                                timer: 3000,
+                                position: 'top-right',
+                                timerProgressBar: true,
+                                showCancelButton: false
+                            })
+                            getChapters();
+                        }
+                    })
+                } catch (error) {
+                    console.log(error);
+                }
             }
         })
     }

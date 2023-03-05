@@ -95,7 +95,7 @@ const AllChapters = () => {
                                     <h5 className='card-header'>
                                         All Chapters ({totalResult})
                                         <span className='d-inline-block float-end'>
-                                            <Link className='btn btn-sm btn-primary ms-2' to={`/courses/${course_id}/add-chapter/`}> Add Chapter</Link>
+                                            <Link className='btn btn-sm btn-success ms-2' to={`/courses/${course_id}/add-chapter/`}> Add Chapter</Link>
                                         </span>
                                     </h5>
                                     <div className='card-body'>

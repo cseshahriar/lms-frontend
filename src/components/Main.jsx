@@ -44,6 +44,7 @@ import TeacherLogout from "./teachers/TeacherLogout";
 import AddChapter from "./teachers/AddChapter";
 import AllChapters from "./teachers/AllChapters";
 import EditChapter from "./teachers/EditChapter";
+import EditCourse from "./teachers/EditCourse";
 
 
 const Main = () => {
@@ -86,6 +87,7 @@ const Main = () => {
                 <Route path="/teacher-change-password" element={<TeacherChangePassword />} />
 
                 <Route path="/teacher-add-course" element={<AddCourse />} />
+                <Route path="/courses/:course_id/edit/" element={<EditCourse />} />
                 <Route path="/courses/:course_id/chapters" element={<AllChapters />} />
                 <Route path="/courses/:course_id/add-chapter/" element={<AddChapter />} />
                 <Route path="/chapters/:chapter_id/edit/" element={<EditChapter />} />

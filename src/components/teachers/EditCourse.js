@@ -138,11 +138,11 @@ const EditCourse = () => {
                                 <div className="mb-3 row">
                                     <label htmlFor="category" className="col-sm-2 col-form-label">Category</label>
                                     <div className="col-sm-10">
-                                        <select required className="form-select" name='category' onChange={handleChange}>
+                                        <select required className="form-select" name='category' onChange={handleChange} value={courseData.category.id}>
                                             <option value="" disabled>Select Category</option>
                                             {
                                                 categories && categories.map((category) => (
-                                                    <option key={category.id} value={category.id} selected={category.id === courseData.category.id }>{category.title}</option>
+                                                    <option key={category.id} value={category.id}>{category.title}</option>
                                                 ))
                                             }
                                         </select>

@@ -62,9 +62,8 @@ const TeacherCourses = () => {
                                                 </td>
                                                 <td>
                                                     <div className="d-grid gap-2 d-md-block">
-                                                        <Link className='btn btn-sm btn-primary ms-2' to={`/courses/${course.id}/edit/`}>Edit</Link>
-                                                        <Link className='btn btn-sm btn-primary ms-2' to={`/courses/${course.id}/add-chapter/`}> Add Chapter</Link>
-                                                        <button className='btn btn-sm btn-danger'>Delete</button>
+                                                        <Link className='btn btn-sm btn-primary' to={`/courses/${course.id}/edit/`}>Edit</Link>
+                                                        <button className='btn btn-sm btn-danger ms-1'>Delete</button>
                                                     </div>
                                                 </td>
                                             </tr>

@@ -17,7 +17,6 @@ const EditCourse = () => {
 
     const [courseData, setCourseData] = useState({
         'category': '',
-        'teacher': parseInt(user_id),
         'title': '',
         'description': '',
         'technologies': '',
@@ -40,7 +39,14 @@ const EditCourse = () => {
         try {
             axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/courses/${course_id}`)
                 .then(response => {
-                    setCourseData(response.data)
+                    setCourseData({
+                        'category': response.data.category,
+                        'title': response.data.title,
+                        'description': response.data.description,
+                        'technologies': response.data.technologies,
+                        'featured_img': '',
+                        'status': ''
+                    })
                 })
         } catch (error) {
             console.log(error);
@@ -70,11 +76,14 @@ const EditCourse = () => {
         const _formData = new FormData();
         _formData.append('category', courseData.category.id)
         _formData.append('title', courseData.title)
+        _formData.append('technologies', courseData.technologies)
         _formData.append('description', courseData.description)
+
         if(courseData.featured_img) {
+            console.log('img', courseData.featured_img);
             _formData.append('featured_img', courseData.featured_img)
         }
-        _formData.append('technologies', courseData.technologies)
+
         try {
             axios.patch(
                 `${process.env.REACT_APP_API_BASE_URL}/api/courses/${course_id}/`,
@@ -91,7 +100,6 @@ const EditCourse = () => {
                     'title': response.data.title,
                     'description': response.data.description,
                     'technologies': response.data.technologies,
-                    'featured_img': response.data.featured_img,
                     'status': 'success'
                 })
                 setIsAlertVisible(true);
@@ -158,7 +166,8 @@ const EditCourse = () => {
                                 <div className="mb-3 row">
                                     <label htmlFor="featured_img" className="col-sm-2 col-form-label">Featured Image</label>
                                     <div className="col-sm-10">
-                                        <input required type="file" name="featured_img" className="form-control" id="featured_img"  onChange={handleFileChange} />
+                                        <input type="file" name="featured_img" className="form-control" id="featured_img"  onChange={handleFileChange} />
+                                        <img src={courseData.featured_img} alt='' className='mt-2 img-thumbnail' />
                                     </div>
                                 </div>
 

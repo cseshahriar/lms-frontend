@@ -33,17 +33,19 @@ const CourseDetail = () => {
     return (
         <div className="container py-5">
             {
-                isLoading ? <Loader/> : error ? <Messages variant="danger" message={error} /> : (
+                error
+                    ? <Messages variant="danger" message={error} /> :
+                    isLoading ? <Loader/>  : (
                     <>
                         <div className="row">
                             <div className="col-md-4">
-                                <img src="/logo512.png" className="img-thumbnail" alt="" />
+                                <img src={course.featured_img} className="img-thumbnail" alt="" />
                             </div>
 
                             <div className="col-md-8">
-                                <h1>Title</h1>
-                                <p>Description</p>
-                                <p className='fw-bold'>Course Created By: <Link to="/teachers/1"></Link></p>
+                                <h1>{course.title }</h1>
+                                <p>{ course.description }</p>
+                                <p className='fw-bold'>Course Created By: <Link to={`/teachers/${course.teacher.id}`}>{course.teacher.full_name}</Link></p>
                                 <p className='fw-bold'>Course Duration: 30 Hours 30 Minutes</p>
                                 <p className='fw-bold'>Total Enrolled: 456 Students</p>
                                 <p className='fw-bold'>Rating: 4.5/5</p>

@@ -1,11 +1,13 @@
 import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 const Navbar = () => {
     const teacherLoginStatus = localStorage.getItem('teacherLoginStatus')
     const user_name = localStorage.getItem('user_name')
 
     return (
+        <>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark" id='navbar'>
             <div className="container">
 
@@ -69,6 +71,8 @@ const Navbar = () => {
                 </div>
             </div>
         </nav>
+        <ToastContainer />
+        </>
     );
 };
 

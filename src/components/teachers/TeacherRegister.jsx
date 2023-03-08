@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import {isTeacherAuthenticated} from "../../functions";
 
+
 const TeacherRegister = () => {
     useEffect(() => {
         document.title="Teacher Register"

@@ -8,8 +8,10 @@ import Messages from "./Messages";
 
 const CourseDetail = () => {
     let {course_id} = useParams();
+
     const [course, setCourse] = useState();
     const [chapters, setChapters] = useState([]);
+    const [teacher, setTeacher] = useState();
 
     const [isLoading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -20,24 +22,17 @@ const CourseDetail = () => {
             .get(`${process.env.REACT_APP_API_BASE_URL}/api/courses/${course_id}`)
             .then((response) => {
                 setCourse(response.data);
-                // setChapters(response.data.course_chapters);
+                setChapters(response.data.course_chapters);
+                setTeacher(response.data.teacher);
             })
             .catch(error => setError(error));
         setLoading(false);
     };
 
-    // console.log(chapters)
-
     useEffect(() => {
         document.title = "Course Detail Page"
-        try {
-            getCourse();
-        } catch (error) {
-            setError(error);
-        }
+        getCourse();
     }, [])
-
-    console.log('course', course)
 
     if (error) {
         return <Messages variant="danger" message={error}/>
@@ -60,7 +55,7 @@ const CourseDetail = () => {
                             <h1>{course.title}</h1>
                             <p>{course.description}</p>
                             <p className='fw-bold'>Course Created By: <Link
-                                to={`/teachers/${course.teacher.id}`}>{course.teacher.full_name}</Link></p>
+                                to={`/teachers/${teacher.id}`}>{teacher.full_name}</Link></p>
                             <p className='fw-bold'>Course Duration: 30 Hours 30 Minutes</p>
                             <p className='fw-bold'>Total Enrolled: 456 Students</p>
                             <p className='fw-bold'>Rating: 4.5/5</p>
@@ -75,7 +70,7 @@ const CourseDetail = () => {
 
                         <ul className='list-group list-group-flush'>
                             {
-                                course.course_chapters && course.course_chapters.map((chapter) => (
+                                chapters && chapters.map((chapter) => (
                                     <li className='list-group-item' key={chapter.id}>{ chapter.title }
 
                                         <span className='float-end'>

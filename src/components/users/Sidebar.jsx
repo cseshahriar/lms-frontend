@@ -1,7 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
+import {toast} from "react-toastify";
+
 
 const Sidebar = () => {
+    const navigate = useNavigate();
+
+    const logout = () => {
+        localStorage.removeItem('studentLoginStatus')
+        localStorage.removeItem('student_id')
+        localStorage.removeItem('student_name')
+        navigate('/user-login');
+        toast.success('Logout Successfully', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+    }
+
     return (
         <div className='card'>
             <h5 className='card-header'>Dashboard</h5>
@@ -12,7 +33,7 @@ const Sidebar = () => {
                 <Link to='/recommended-courses' className='list-group-item list-group-item-action'>Recommended Courses</Link>
                 <Link to='/profile-setting' className='list-group-item list-group-item-action'>Profile Settings</Link>
                 <Link to='/change-password' className='list-group-item list-group-item-action'>Change Password</Link>
-                <Link to='/user-login' className='list-group-item list-group-item-action'>Logout</Link>
+                <button type='button' className='list-group-item list-group-item-action' onClick={logout}>Logout</button>
             </div>
         </div>
     );

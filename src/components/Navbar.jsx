@@ -10,6 +10,12 @@ const Navbar = () => {
     const studentLoginStatus = localStorage.getItem('studentLoginStatus')
     const student_name = localStorage.getItem('student_name')
 
+    const userLogout = () => {
+        localStorage.removeItem('studentLoginStatus')
+        localStorage.removeItem('student_id')
+        localStorage.removeItem('student_name')
+        window.location.href = '/user-login';
+    }
     return (
         <>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark" id='navbar'>
@@ -38,7 +44,7 @@ const Navbar = () => {
                         {/* teachers urls */}
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                               aria-expanded="false"><i className="bi bi-person-circle"></i> { user_name && user_name }</a>
+                               aria-expanded="false" title='Teacher'><i className="bi bi-person-circle"></i> { user_name && user_name }</a>
                             <ul className="dropdown-menu">
                                 {
                                     teacherLoginStatus && teacherLoginStatus == 'true' ?
@@ -61,13 +67,16 @@ const Navbar = () => {
 
                         {/* user urls */}
                         <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i className="bi bi-person-circle"></i> User Name</a>
+                            <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" title='Student'>
+                                <i className="bi bi-person-circle"></i>
+                                { student_name && student_name }
+                            </a>
                             <ul className="dropdown-menu">
                                 {
                                     studentLoginStatus && studentLoginStatus === 'true' ?
                                         <>
                                             <li><Link className="dropdown-item" to="/user-dashboard"><i className="bi bi-gear"></i> Dashboard</Link></li>
-                                            <li><Link className="dropdown-item" to="/user-logout"><i className="bi bi-box-arrow-right"></i> Logout</Link></li>
+                                            <li><button type='button' className="dropdown-item" onClick={userLogout}><i className="bi bi-box-arrow-right"></i> Logout</button></li>
                                         </>
                                         :
                                         <>

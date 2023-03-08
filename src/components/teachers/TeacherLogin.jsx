@@ -62,7 +62,7 @@ const TeacherLogin = () => {
                                 </div>
 
                                 <div className="mb-3 text-center">
-                                    <button onClick={submitForm} type="submit" className="btn btn-primary">Submit</button>
+                                    <button onClick={submitForm} type="submit" className="btn btn-primary">Login</button>
                                 </div>
 
                             </form>

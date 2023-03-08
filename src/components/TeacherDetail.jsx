@@ -8,17 +8,19 @@ const TeacherDetail = () => {
     let {teacher_id} = useParams();
     const [teacher, setTeacher] = useState();
     const [teacherCourses, setTeacherCourses] = useState([]);
+    const [skills, setSkills] = useState([]);
 
     const [isLoading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     const getTeacher = async () => {
         setLoading(true);
-        const data = await axios
+        await axios
             .get(`${process.env.REACT_APP_API_BASE_URL}/api/teachers/${teacher_id}`)
             .then((response) => {
                 setTeacher(response.data);
                 setTeacherCourses(response.data.teacher_courses);
+                setSkills(response.data.skill_list);
             })
             .catch(
                 error => (
@@ -33,7 +35,6 @@ const TeacherDetail = () => {
         getTeacher();
     }, [])
 
-    console.log(teacher, teacherCourses)
     if (error) {
         return <Messages variant="danger" message={error}/>
     }
@@ -54,7 +55,7 @@ const TeacherDetail = () => {
                         <p>{teacher.detail}</p>
                         <p className='fw-bold'>Skills:
                             {
-                                teacher.skills.split(',').map((skill, index) => (
+                                skills.map((skill, index) => (
                                     <Link key={index} to={`/category/${skill}`} className='ms-1'>{ skill }</Link>
                                 ))
                             }

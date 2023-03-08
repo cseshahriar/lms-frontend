@@ -63,14 +63,17 @@ const CourseDetail = () => {
                         </div>
 
                         <ul className='list-group list-group-flush'>
+                            {
+                                
+                            }
                             <li className='list-group-item'>Introduction
                                 <span className='float-end'>
-                        <span className='me-5'>1 Hour 30 Minutes</span>
-                        <button type="button" className='btn btn-sm btn-danger float-end'
-                                data-bs-toggle="modal" data-bs-target="#videoModal1">
-                            <i className="bi bi-youtube"></i>
-                        </button>
-                    </span>
+                                <span className='me-5'>1 Hour 30 Minutes</span>
+                                    <button type="button" className='btn btn-sm btn-danger float-end'
+                                    data-bs-toggle="modal" data-bs-target="#videoModal1">
+                                        <i className="bi bi-youtube"></i>
+                                    </button>
+                                </span>
 
                                 {/* video modal start */}
                                 <div className="modal fade" id="videoModal1" tabIndex="-1"
@@ -96,12 +99,12 @@ const CourseDetail = () => {
 
                             <li className='list-group-item'>Setup Environment
                                 <span className='float-end'>
-                        <span className='me-5'>1 Hour 30 Minutes</span>
-                        <button type="button" className='btn btn-sm btn-danger float-end'
-                                data-bs-toggle="modal" data-bs-target="#videoModal2">
-                            <i className="bi bi-youtube"></i>
-                        </button>
-                    </span>
+                                <span className='me-5'>1 Hour 30 Minutes</span>
+                                    <button type="button" className='btn btn-sm btn-danger float-end'
+                                            data-bs-toggle="modal" data-bs-target="#videoModal2">
+                                        <i className="bi bi-youtube"></i>
+                                    </button>
+                                </span>
 
                                 {/* video modal start */}
                                 <div className="modal fade" id="videoModal2" tabIndex="-1"

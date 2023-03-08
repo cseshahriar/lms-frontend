@@ -64,72 +64,42 @@ const CourseDetail = () => {
 
                         <ul className='list-group list-group-flush'>
                             {
-                                
+                                course.chapters && course.chapters.map((chapter) => (
+                                    <li className='list-group-item' key={chapter.id}>{ chapter.title }
+
+                                        <span className='float-end'>
+                                            <span className='me-5'>1 Hour 30 Minutes</span>
+                                            <button type="button" className="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target={`#exampleModal${chapter.id}`} >
+                                                <i className="bi bi-youtube"></i>
+                                            </button>
+                                        </span>
+
+                                        <div className="modal fade" id={`exampleModal${chapter.id}`} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div className="modal-dialog">
+                                                <div className="modal-content">
+                                                    <div className="modal-header">
+                                                        <h1 className="modal-title fs-5" id="exampleModalLabel">{chapter.title}</h1>
+                                                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div className="modal-body">
+                                                        <div className="ratio ratio-16x9">
+                                                            <iframe
+                                                                src={`${process.env.REACT_APP_API_BASE_URL}/media/${chapter.video}?rel=0`}
+                                                                title={chapter.title} frameBorder="0" allowFullScreen></iframe>
+                                                        </div>
+                                                    </div>
+                                                    <div className="modal-footer">
+                                                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <button type="button" className="btn btn-primary">Save changes</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                ))
                             }
-                            <li className='list-group-item'>Introduction
-                                <span className='float-end'>
-                                <span className='me-5'>1 Hour 30 Minutes</span>
-                                    <button type="button" className='btn btn-sm btn-danger float-end'
-                                    data-bs-toggle="modal" data-bs-target="#videoModal1">
-                                        <i className="bi bi-youtube"></i>
-                                    </button>
-                                </span>
-
-                                {/* video modal start */}
-                                <div className="modal fade" id="videoModal1" tabIndex="-1"
-                                     aria-labelledby="videoModal1Label" aria-hidden="true">
-                                    <div className="modal-dialog modal-lg">
-                                        <div className="modal-content">
-                                            <div className="modal-header">
-                                                <h1 className="modal-title fs-5" id="videoModal1Label">Video title 1</h1>
-                                                <button type="button" className="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                            </div>
-                                            <div className="modal-body">
-                                                <div className="ratio ratio-16x9">
-                                                    <iframe src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0"
-                                                            title="YouTube video" allowFullScreen></iframe>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                {/* video modal end */}
-                            </li>
-
-                            <li className='list-group-item'>Setup Environment
-                                <span className='float-end'>
-                                <span className='me-5'>1 Hour 30 Minutes</span>
-                                    <button type="button" className='btn btn-sm btn-danger float-end'
-                                            data-bs-toggle="modal" data-bs-target="#videoModal2">
-                                        <i className="bi bi-youtube"></i>
-                                    </button>
-                                </span>
-
-                                {/* video modal start */}
-                                <div className="modal fade" id="videoModal2" tabIndex="-1"
-                                     aria-labelledby="videoModal2Label" aria-hidden="true">
-                                    <div className="modal-dialog modal-lg">
-                                        <div className="modal-content">
-                                            <div className="modal-header">
-                                                <h1 className="modal-title fs-5" id="videoModalLabel">Modal title 2</h1>
-                                                <button type="button" className="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                            </div>
-                                            <div className="modal-body">
-                                                <div className="ratio ratio-16x9">
-                                                    <iframe src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0"
-                                                            title="YouTube video" allowFullScreen></iframe>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                {/* video modal end */}
-                            </li>
                         </ul>
                     </div>
-                    {/* end course video */}
                 </>
 
                 <h1 className="pd-1 mb-4">Related Courses</h1>

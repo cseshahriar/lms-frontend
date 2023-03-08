@@ -9,6 +9,8 @@ import Messages from "./Messages";
 const CourseDetail = () => {
     let {course_id} = useParams();
     const [course, setCourse] = useState();
+    const [chapters, setChapters] = useState([]);
+
     const [isLoading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -18,14 +20,21 @@ const CourseDetail = () => {
             .get(`${process.env.REACT_APP_API_BASE_URL}/api/courses/${course_id}`)
             .then((response) => {
                 setCourse(response.data);
+                // setChapters(response.data.course_chapters);
             })
             .catch(error => setError(error));
         setLoading(false);
     };
 
+    // console.log(chapters)
+
     useEffect(() => {
         document.title = "Course Detail Page"
-        getCourse();
+        try {
+            getCourse();
+        } catch (error) {
+            setError(error);
+        }
     }, [])
 
     console.log('course', course)
@@ -33,9 +42,11 @@ const CourseDetail = () => {
     if (error) {
         return <Messages variant="danger" message={error}/>
     }
+
     if (isLoading) {
         return <Loader/>
     }
+
     if (course) {
         return (
             <div className="container py-5">
@@ -64,7 +75,7 @@ const CourseDetail = () => {
 
                         <ul className='list-group list-group-flush'>
                             {
-                                course.chapters && course.chapters.map((chapter) => (
+                                course.course_chapters && course.course_chapters.map((chapter) => (
                                     <li className='list-group-item' key={chapter.id}>{ chapter.title }
 
                                         <span className='float-end'>
@@ -84,7 +95,7 @@ const CourseDetail = () => {
                                                     <div className="modal-body">
                                                         <div className="ratio ratio-16x9">
                                                             <iframe
-                                                                src={`${process.env.REACT_APP_API_BASE_URL}/media/${chapter.video}?rel=0`}
+                                                                src={`${chapter.video}?rel=0`}
                                                                 title={chapter.title} frameBorder="0" allowFullScreen></iframe>
                                                         </div>
                                                     </div>

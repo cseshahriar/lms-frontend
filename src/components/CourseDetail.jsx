@@ -11,6 +11,7 @@ const CourseDetail = () => {
 
     // state data
     const [course, setCourse] = useState();
+    const [skills, setSkills] = useState();
     const [related_courses, setRelatedCourses] = useState([]);
     const [chapters, setChapters] = useState([]);
     const [teacher, setTeacher] = useState();
@@ -27,6 +28,7 @@ const CourseDetail = () => {
                 setChapters(response.data.course_chapters);
                 setTeacher(response.data.teacher);
                 setRelatedCourses(JSON.parse(response.data.related_courses));
+                setSkills(response.data.skill_list);
             })
             .catch(
                 error => (
@@ -63,8 +65,16 @@ const CourseDetail = () => {
                             <h1>{course.title}</h1>
                             <p>{course.description}</p>
                             <p className='fw-bold'>Course Created By: <Link
-                                to={`/teachers/${teacher.id}`}>{teacher.full_name}</Link></p>
-                            <p className='fw-bold'>Technologies: {course.technologies }</p>
+                                to={`/teachers/${teacher.id}`}>{teacher.full_name}</Link>
+                            </p>
+
+                            <p className='fw-bold'>Technologies:
+                                {
+                                    skills && skills.map((skill, index) => (
+                                        <Link key={index} to={`/category/${skill}`} className='ms-2 badge text-bg-info'>{ skill }</Link>
+                                    ))
+                                }
+                            </p>
                             <p className='fw-bold'>Course Duration: 30 Hours 30 Minutes</p>
                             <p className='fw-bold'>Total Enrolled: 456 Students</p>
                             <p className='fw-bold'>Rating: 4.5/5</p>

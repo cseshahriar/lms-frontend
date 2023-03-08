@@ -41,7 +41,7 @@ const CategoryCourses = () => {
     return (
         <div className='container mt-3'>
             {/* latest courses */}
-            <h5 className="pd-1 mb-4">{category_slug} <Link to='/all-courses' className='float-end'>See All</Link></h5>
+            <h5 className="pd-1 mb-4" style={{ textTransform: 'capitalize' }}>{category_slug} <Link to='/all-courses' className='float-end'>See All</Link></h5>
 
             <div className="row mb-4">
                 {
@@ -68,8 +68,9 @@ const CategoryCourses = () => {
                         </div>
                     ))
                 }
+
+                { courses.length < 1 ?  <Messages variant="danger" message="Data not found" /> : null}
             </div>
-            {/* End latest courses */}
 
 
             {/* pagination */}

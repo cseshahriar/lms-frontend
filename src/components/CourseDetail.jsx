@@ -28,7 +28,11 @@ const CourseDetail = () => {
                 setTeacher(response.data.teacher);
                 setRelatedCourses(JSON.parse(response.data.related_courses));
             })
-            .catch(error => setError(error));
+            .catch(
+                error => (
+                    setError(error.message)
+                )
+            );
         setLoading(false);
     };
 
@@ -119,13 +123,13 @@ const CourseDetail = () => {
                         related_courses && related_courses.map((related_course, index) => (
                             <div className="col-md-3" key={index}>
                                 <div className="card">
-                                    <Link to={`/courses/${related_course.pk}`}>
+                                    <Link to={`/courses/${related_course.pk}`} target="_blank">
                                         <img src={`${process.env.REACT_APP_API_BASE_URL}/media/${related_course.fields.featured_img}`} className="card-img-top" alt={related_course.fields.title} />
                                     </Link>
 
                                     <div className="card-body">
                                         <h5 className="card-title text-center">
-                                            <Link to={`/courses/${related_course.pk}`}>{related_course.fields.title}</Link>
+                                            <Link target="_blank" to={`/courses/${related_course.pk}`}>{related_course.fields.title}</Link>
                                         </h5>
                                     </div>
                                 </div>

@@ -1,8 +1,17 @@
 import React, {useEffect} from 'react';
 import Sidebar from './Sidebar';
+import {useNavigate} from "react-router-dom";
 
 
 const UserDashboard = () => {
+    const navigate = useNavigate();
+
+    const studentLoginStatus = localStorage.getItem('studentLoginStatus')
+    if(studentLoginStatus !== 'true') {
+        navigate('/user-login')
+    }
+
+
     useEffect(() => {
         document.title="User Dashboard"
     })

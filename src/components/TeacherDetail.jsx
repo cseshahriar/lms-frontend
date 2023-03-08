@@ -56,7 +56,7 @@ const TeacherDetail = () => {
                         <p className='fw-bold'>Skills:
                             {
                                 skills.map((skill, index) => (
-                                    <Link key={index} to={`/category/${skill}`} className='ms-2 badge text-bg-info'>{ skill }</Link>
+                                    <Link key={index} to={`/teacher/${teacher.id}/category/${skill}`} className='ms-2 badge text-bg-info'>{ skill }</Link>
                                 ))
                             }
                         </p>

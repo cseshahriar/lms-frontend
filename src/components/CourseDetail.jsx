@@ -9,7 +9,9 @@ import Messages from "./Messages";
 const CourseDetail = () => {
     let {course_id} = useParams();
 
+    // state data
     const [course, setCourse] = useState();
+    const [related_courses, setRelatedCourses] = useState([]);
     const [chapters, setChapters] = useState([]);
     const [teacher, setTeacher] = useState();
 
@@ -24,6 +26,7 @@ const CourseDetail = () => {
                 setCourse(response.data);
                 setChapters(response.data.course_chapters);
                 setTeacher(response.data.teacher);
+                setRelatedCourses(JSON.parse(response.data.related_courses));
             })
             .catch(error => setError(error));
         setLoading(false);
@@ -34,10 +37,11 @@ const CourseDetail = () => {
         getCourse();
     }, [])
 
+    console.log('related_courses', related_courses);
+
     if (error) {
         return <Messages variant="danger" message={error}/>
     }
-
     if (isLoading) {
         return <Loader/>
     }
@@ -56,6 +60,7 @@ const CourseDetail = () => {
                             <p>{course.description}</p>
                             <p className='fw-bold'>Course Created By: <Link
                                 to={`/teachers/${teacher.id}`}>{teacher.full_name}</Link></p>
+                            <p className='fw-bold'>Technologies: {course.technologies }</p>
                             <p className='fw-bold'>Course Duration: 30 Hours 30 Minutes</p>
                             <p className='fw-bold'>Total Enrolled: 456 Students</p>
                             <p className='fw-bold'>Rating: 4.5/5</p>
@@ -110,35 +115,23 @@ const CourseDetail = () => {
 
                 <h1 className="pd-1 mb-4">Related Courses</h1>
                 <div className="row mb-4">
-                    <div className="col-md-3">
-                        <div className="card">
+                    {
+                        related_courses && related_courses.map((related_course, index) => (
+                            <div className="col-md-3" key={index}>
+                                <div className="card">
+                                    <Link to={`/courses/${related_course.pk}`}>
+                                        <img src={`${process.env.REACT_APP_API_BASE_URL}/media/${related_course.fields.featured_img}`} className="card-img-top" alt={related_course.fields.title} />
+                                    </Link>
 
-                            <Link to={`/courses/${1}`}>
-                                <img src="/logo512.png" className="card-img-top" alt=""/>
-                            </Link>
-
-                            <div className="card-body">
-                                <h5 className="card-title text-center">
-                                    <Link to={`/courses/${1}`}>Course title</Link>
-                                </h5>
+                                    <div className="card-body">
+                                        <h5 className="card-title text-center">
+                                            <Link to={`/courses/${related_course.pk}`}>{related_course.fields.title}</Link>
+                                        </h5>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div className="col-md-3">
-                        <div className="card">
-
-                            <Link to={`/courses/${1}`}>
-                                <img src="/logo512.png" className="card-img-top" alt=""/>
-                            </Link>
-
-                            <div className="card-body">
-                                <h5 className="card-title text-center">
-                                    <Link to={`/courses/${1}`}>Course title</Link>
-                                </h5>
-                            </div>
-                        </div>
-                    </div>
+                        ))
+                    }
                 </div>
             </div>
         )

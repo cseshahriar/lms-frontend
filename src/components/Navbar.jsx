@@ -44,7 +44,9 @@ const Navbar = () => {
                         {/* teachers urls */}
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                               aria-expanded="false" title='Teacher'><i className="bi bi-person-circle"></i> { user_name && user_name }</a>
+                               aria-expanded="false" title='Teacher'><i className="bi bi-person-circle"></i>
+                                &nbsp; Teacher Dashboard
+                            </a>
                             <ul className="dropdown-menu">
                                 {
                                     teacherLoginStatus && teacherLoginStatus == 'true' ?
@@ -69,7 +71,7 @@ const Navbar = () => {
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" title='Student'>
                                 <i className="bi bi-person-circle"></i>
-                                { student_name && student_name }
+                               &nbsp; Student Dashboard
                             </a>
                             <ul className="dropdown-menu">
                                 {

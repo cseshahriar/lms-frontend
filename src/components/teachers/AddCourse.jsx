@@ -63,7 +63,6 @@ const AddCourse = () => {
     const formSubmit = (e) => {
         e.preventDefault();
         setErrors(null);
-        category_validation(courseData.category);
 
         const _formData = new FormData();
         _formData.append('category', courseData.category)
@@ -106,9 +105,10 @@ const AddCourse = () => {
             setErrors(errors.response.data);
             console.log('err', errors)
         })
+
     }
 
-    console.log('course data', courseData)
+    console.log('course input data', courseData)
 
     return (
         <div className='container py-5'>
@@ -134,6 +134,7 @@ const AddCourse = () => {
                                     <label htmlFor="category" className="col-sm-2 col-form-label">Category</label>
                                     <div className="col-sm-10">
                                         <select required className="form-select" name='category' onChange={handleChange}>
+                                            <option value="" selected="">Select Category</option>
                                             {
                                                 categories && categories.map((category) => (
                                                     <option key={category.id} value={category.id}>{category.title}</option>

@@ -4,16 +4,15 @@ import { isTeacherAuthenticated } from "../../functions";
 
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import Messages from "../Messages";
+import {toast} from "react-toastify";
 
 const AddCourse = () => {
     const user_id = localStorage.getItem('user_id')
-    console.log('user id', user_id);
-
     const navigate = useNavigate();
 
     // states
-    const [error, setError] = useState(null);
-    const [ isAlertVisible, setIsAlertVisible ] = useState(false);
+    const [errors, setErrors] = useState(null);
     const [categories, setCategories] = useState([]);
 
     const [courseData, setCourseData] = useState({
@@ -23,7 +22,6 @@ const AddCourse = () => {
         'description': '',
         'technologies': '',
         'featured_img': '',
-        'status': ''
     });
 
     useEffect(() => {
@@ -34,8 +32,9 @@ const AddCourse = () => {
         try {
             axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/categories/`)
                 .then(response => {
-                    setCategories(response.data)
-                })
+                    setCategories(response.data);
+                }).catch((errors) => {
+            })
         } catch (error) {
             console.log(error);
         }
@@ -46,6 +45,7 @@ const AddCourse = () => {
         setCourseData({
             ...courseData, [event.target.name]: event.target.value
         })
+        console.log('event change', courseData);
     }
 
     const handleFileChange = (event) => {
@@ -54,8 +54,17 @@ const AddCourse = () => {
         })
     }
 
+    const category_validation = (value) => {
+        if(value === '') {
+            setErrors({'category': 'Category is required.'})
+        }
+    }
+
     const formSubmit = (e) => {
         e.preventDefault();
+        setErrors(null);
+        category_validation(courseData.category);
+
         const _formData = new FormData();
         _formData.append('category', courseData.category)
         _formData.append('teacher', courseData.teacher)
@@ -64,38 +73,42 @@ const AddCourse = () => {
         _formData.append('featured_img', courseData.featured_img)
         _formData.append('technologies', courseData.technologies)
 
-        try {
-            axios.post(
-                `${process.env.REACT_APP_API_BASE_URL}/api/courses/`,
-                _formData,
-                {
-                    headers: {
-                        'content-type': 'multipart/form-data'
-                    }
+        axios.post(
+            `${process.env.REACT_APP_API_BASE_URL}/api/courses/`,
+            _formData,
+            {
+                headers: {
+                    'content-type': 'multipart/form-data'
                 }
-            ).then((response) => {
-                console.log(response.data)
-                setCourseData({
-                    'category': '',
-                    'teacher': '',
-                    'title': '',
-                    'description': '',
-                    'course_video': '',
-                    'technologies': '',
-                    'featured_img': '',
-                    'status': 'success'
-                })
-                setIsAlertVisible(true);
-                setTimeout(function () {
-                    setIsAlertVisible(false);
-                    navigate('/teacher-courses');
-                }, 3000);
+            }
+        ).then((response) => {
+            setCourseData({
+                'category': '',
+                'teacher': '',
+                'title': '',
+                'description': '',
+                'course_video': '',
+                'technologies': '',
+                'featured_img': '',
             })
-        } catch (error) {
-            setError(error);
-            setCourseData({'status': 'error'});
-        }
+            navigate('/teacher-courses');
+            toast.success('Course added Successfully', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        }).catch((errors) => {
+            setErrors(errors.response.data);
+            console.log('err', errors)
+        })
     }
+
+    console.log('course data', courseData)
 
     return (
         <div className='container py-5'>
@@ -109,11 +122,10 @@ const AddCourse = () => {
                 <section className='col-md-9'>
                     <div className='card'>
                         {
-                            isAlertVisible &&
-                            courseData.status === 'success' && <p className="text-success" id="success">Thanks for your registration</p>
+                            errors && Object.entries(errors).map(([key, value]) => (
+                                <Messages variant="danger" message={`${key.toUpperCase()}: ${value}`} key={key} />
+                            ))
                         }
-                        { courseData.status === 'error' && <p className="text-danger">Something went wrong! Please try again.</p>}
-
 
                         <h5 className="card-header">Add Course</h5>
                         <div className='card-body'>
@@ -122,7 +134,6 @@ const AddCourse = () => {
                                     <label htmlFor="category" className="col-sm-2 col-form-label">Category</label>
                                     <div className="col-sm-10">
                                         <select required className="form-select" name='category' onChange={handleChange}>
-                                            <option value="" disabled>Select Category</option>
                                             {
                                                 categories && categories.map((category) => (
                                                     <option key={category.id} value={category.id}>{category.title}</option>

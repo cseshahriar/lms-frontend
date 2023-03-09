@@ -34,7 +34,11 @@ const TeacherCourses = () => {
                 {/* content */}
                 <section className='col-md-9'>
                     <div className='card'>
-                        <h5 className='card-header'>My Courses</h5>
+                        <h5 className='card-header'>My Courses
+                            <span className='d-inline-block float-end'>
+                                <Link className='btn btn-sm btn-success ms-2' to='/teacher-add-course'> Add Course</Link>
+                            </span>
+                        </h5>
                         <div className='card-body'>
                             <div className='table-responsive'>
                                 <table className='table table-bordered'>

@@ -1,9 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
+import {toast} from "react-toastify";
+import Messages from "../Messages";
 
 const TeacherLogin = () => {
-
-    const [errorMessage, setErrorMessage] = useState('');
+    const navigate = useNavigate();
+    const [errors, setErrors] = useState(null);
     const [teacherLoginData, setTeacherLoginData] = useState({
         'email': '',
         'password': '',
@@ -27,14 +30,23 @@ const TeacherLogin = () => {
             teacherLoginFormData,
         )
         .then((response) => {
-            console.log('response', response.data)
             localStorage.setItem('teacherLoginStatus', true)
             localStorage.setItem('user_id', response.data.teacher_id)
             localStorage.setItem('user_name', response.data.teacher_full_name)
-            window.location.href = '/teacher-dashboard';
+            navigate('/teacher-dashboard');
+            toast.success('Login Successfully', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
         })
         .catch(error => {
-            setErrorMessage(error.response.data.error);
+            setErrors(error.response.data);
         });
     }
 
@@ -50,7 +62,12 @@ const TeacherLogin = () => {
                         <h3 className='card-header'>Teacher Login</h3>
                         <div className='card-body'>
                             <form>
-                                { errorMessage && <div className="text-danger text-center">{errorMessage}</div> }
+                                {
+                                    errors && Object.entries(errors).map(([key, value]) => (
+                                        <Messages variant="danger" message={`${key.toUpperCase()}: ${value}`} key={key} />
+                                    ))
+                                }
+
                                 <div className="mb-3">
                                     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
                                     <input type="email" name="email" value={teacherLoginData.email} onChange={handleChange} className="form-control" id="exampleInputEmail1"/>

@@ -103,12 +103,8 @@ const AddCourse = () => {
             });
         }).catch((errors) => {
             setErrors(errors.response.data);
-            console.log('err', errors)
         })
-
     }
-
-    console.log('course input data', courseData)
 
     return (
         <div className='container py-5'>

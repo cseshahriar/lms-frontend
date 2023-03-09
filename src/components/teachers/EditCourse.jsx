@@ -4,6 +4,8 @@ import { isTeacherAuthenticated } from "../../functions";
 
 import axios from "axios";
 import {useNavigate, useParams} from "react-router-dom";
+import Messages from "../Messages";
+import {toast} from "react-toastify";
 
 const EditCourse = () => {
     const navigate = useNavigate();
@@ -11,8 +13,7 @@ const EditCourse = () => {
     const user_id = localStorage.getItem('user_id')
 
     // states
-    const [error, setError] = useState(null);
-    const [ isAlertVisible, setIsAlertVisible ] = useState(false);
+    const [errors, setErrors] = useState(null);
     const [categories, setCategories] = useState([]);
 
     const [courseData, setCourseData] = useState({
@@ -21,7 +22,6 @@ const EditCourse = () => {
         'description': '',
         'technologies': '',
         'featured_img': '',
-        'status': ''
     });
 
     const getCategory = () => {
@@ -36,21 +36,18 @@ const EditCourse = () => {
     }
 
     const getCourse = () => {
-        try {
-            axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/courses/${course_id}`)
-                .then(response => {
-                    setCourseData({
-                        'category': response.data.category,
-                        'title': response.data.title,
-                        'description': response.data.description,
-                        'technologies': response.data.technologies,
-                        'featured_img': '',
-                        'status': ''
-                    })
+        axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/courses/${course_id}`)
+            .then(response => {
+                setCourseData({
+                    'category': response.data.category,
+                    'title': response.data.title,
+                    'description': response.data.description,
+                    'technologies': response.data.technologies,
+                    'featured_img': '',
                 })
-        } catch (error) {
-            console.log(error);
-        }
+            }).catch((errors) => {
+                setErrors(errors.response.data);
+            })
     }
 
     useEffect(() => {
@@ -83,35 +80,34 @@ const EditCourse = () => {
             console.log('img', courseData.featured_img);
             _formData.append('featured_img', courseData.featured_img)
         }
-
-        try {
-            axios.patch(
-                `${process.env.REACT_APP_API_BASE_URL}/api/courses/${course_id}/`,
-                _formData,
-                {
-                    headers: {
-                        'content-type': 'multipart/form-data'
-                    }
+        axios.patch(
+            `${process.env.REACT_APP_API_BASE_URL}/api/courses/${course_id}/`,
+            _formData,
+            {
+                headers: {
+                    'content-type': 'multipart/form-data'
                 }
-            ).then((response) => {
-                console.log(response.data)
-                setCourseData({
-                    'category': response.data.category,
-                    'title': response.data.title,
-                    'description': response.data.description,
-                    'technologies': response.data.technologies,
-                    'status': 'success'
-                })
-                setIsAlertVisible(true);
-                setTimeout(function () {
-                    setIsAlertVisible(false);
-                    navigate('/teacher-courses');
-                }, 3000);
+            }
+        ).then((response) => {
+            console.log(response.data)
+            setCourseData({
+                'category': response.data.category,
+                'title': response.data.title,
+                'description': response.data.description,
+                'technologies': response.data.technologies,
             })
-        } catch (error) {
-            setError(error);
-            setCourseData({'status': 'error'});
-        }
+            navigate('/teacher-courses');
+            toast.success('Course updated Successfully', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        })
     }
 
     return (
@@ -126,11 +122,10 @@ const EditCourse = () => {
                 <section className='col-md-9'>
                     <div className='card'>
                         {
-                            isAlertVisible &&
-                            courseData.status === 'success' && <p className="text-success p-2" id="success">Course has been updated.</p>
+                            errors && Object.entries(errors).map(([key, value]) => (
+                                <Messages variant="danger" message={`${key.toUpperCase()}: ${value}`} key={key} />
+                            ))
                         }
-                        { courseData.status === 'error' && <p className="text-danger p-2">Something went wrong! Please try again.</p>}
-
 
                         <h5 className="card-header">Edit Course</h5>
                         <div className='card-body'>

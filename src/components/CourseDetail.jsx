@@ -27,7 +27,7 @@ const CourseDetail = () => {
                 setCourse(response.data);
                 setChapters(response.data.course_chapters);
                 setTeacher(response.data.teacher);
-                setRelatedCourses(JSON.parse(response.data.related_courses));
+                setRelatedCourses(response.data.related_courses);
                 setSkills(response.data.skill_list);
             })
             .catch(
@@ -43,14 +43,16 @@ const CourseDetail = () => {
         getCourse();
     }, [])
 
-    console.log('related_courses', related_courses);
-
     if (error) {
+
         return <Messages variant="danger" message={error}/>
     }
     if (isLoading) {
         return <Loader/>
     }
+    console.log('related_courses', related_courses);
+    console.log('chourse', course);
+    console.log('chapters', chapters);
 
     if (course) {
         return (
@@ -133,13 +135,13 @@ const CourseDetail = () => {
                         related_courses && related_courses.map((related_course, index) => (
                             <div className="col-md-3" key={index}>
                                 <div className="card">
-                                    <Link to={`/courses/${related_course.pk}`} target="_blank">
-                                        <img src={`${process.env.REACT_APP_API_BASE_URL}/media/${related_course.fields.featured_img}`} className="card-img-top" alt={related_course.fields.title} />
+                                    <Link to={`/courses/${related_course.id}`} target="_blank">
+                                        <img src={`${process.env.REACT_APP_API_BASE_URL}/${related_course.featured_img}`} className="card-img-top" alt={related_course.title} />
                                     </Link>
 
                                     <div className="card-body">
                                         <h5 className="card-title text-center">
-                                            <Link target="_blank" to={`/courses/${related_course.pk}`}>{related_course.fields.title}</Link>
+                                            <Link target="_blank" to={`/courses/${related_course.id}`}>{related_course.title}</Link>
                                         </h5>
                                     </div>
                                 </div>

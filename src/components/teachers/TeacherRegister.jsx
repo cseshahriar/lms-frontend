@@ -2,9 +2,13 @@ import React, {useEffect, useState} from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import {isTeacherAuthenticated} from "../../functions";
+import Messages from "../Messages";
+import {toast} from "react-toastify";
 
 
 const TeacherRegister = () => {
+    const navigate = useNavigate();
+
     useEffect(() => {
         document.title="Teacher Register"
 
@@ -15,10 +19,10 @@ const TeacherRegister = () => {
         }
     }, [])
 
-    const navigate = useNavigate();
+
+
     // states
-    const [error, setError] = useState(null);
-    const [ isAlertVisible, setIsAlertVisible ] = React.useState(false);
+    const [errors, setErrors] = useState();
 
     const [teacherData, setTeacherData] = useState({
         'full_name': '',
@@ -27,7 +31,6 @@ const TeacherRegister = () => {
         'skills': '',
         'email': '',
         'password': '',
-        'status': ''
     });
 
     // input change take values function
@@ -40,6 +43,8 @@ const TeacherRegister = () => {
     // submit form function
     const submitForm = (e) => {
         e.preventDefault();
+        setErrors(null);
+
         const teacherFormData = new FormData();
         teacherFormData.append('full_name', teacherData.full_name)
         teacherFormData.append('qualification', teacherData.qualification)
@@ -48,30 +53,32 @@ const TeacherRegister = () => {
         teacherFormData.append('email', teacherData.email)
         teacherFormData.append('password', teacherData.password)
 
-        try {
-            // post to backend
-            axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/teachers/`, teacherFormData)
-                .then((response) => {
-                    setTeacherData({
-                        'full_name': '',
-                        'qualification': '',
-                        'mobile_no': '',
-                        'skills': '',
-                        'email': '',
-                        'password': '',
-                        'status': 'success'
-                    })
-                    setIsAlertVisible(true);
-
-                    setTimeout(function () {
-                        setIsAlertVisible(false);
-                        navigate('/teacher-login');
-                    }, 3000);
+        // post to backend
+        axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/teachers/`, teacherFormData)
+            .then((response) => {
+                setTeacherData({
+                    'full_name': '',
+                    'qualification': '',
+                    'mobile_no': '',
+                    'skills': '',
+                    'email': '',
+                    'password': '',
                 })
-        } catch (error) {
-            setError(error);
-            setTeacherData({'status': 'error'});
-        }
+                navigate('/teacher-login');
+                toast.success('Registration Successfully', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            }).catch((errors) => {
+                setErrors(errors.response.data);
+            })
+
     }
 
 
@@ -80,11 +87,10 @@ const TeacherRegister = () => {
             <div className='row'>
                 <div className='col-md-6 offset-3'>
                     {
-                        isAlertVisible &&
-                        teacherData.status == 'success' && <p className="text-success" id="success">Thanks for your registration</p>
+                        errors && Object.entries(errors).map(([key, value]) => (
+                            <Messages variant="danger" message={`${key.toUpperCase()}: ${value}`} key={key} />
+                        ))
                     }
-
-                    { teacherData.status == 'error' && <p className="text-danger">Something went wrong! Please try again.</p>}
 
                     <div className='card'>
                         <h3 className='card-header'>Teacher Register</h3>

@@ -21,6 +21,8 @@ const CourseDetail = () => {
     const [isLoading, setLoading] = useState(false);
     const [errors, setErrors] = useState(null);
 
+    const [enrollmentStatus, setEnrollmentStatus] = useState(false);
+
     const getCourse = async () => {
         setLoading(true)
         const data = await axios
@@ -38,9 +40,21 @@ const CourseDetail = () => {
             });
     };
 
+    const getEnrollmentStatus = () => {
+        axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/enrollment_status/${course_id}/${student_id}/`)
+            .then((response) => {
+                setEnrollmentStatus(response.data.bool);
+            })
+            .catch((errors) => {
+                setErrors(errors.response.data);
+            });
+    }
+
     useEffect(() => {
         document.title = "Course Detail Page"
         getCourse();
+        getEnrollmentStatus();
+
     }, [])
 
     if (errors) {
@@ -118,7 +132,16 @@ const CourseDetail = () => {
                             <p className='fw-bold'>Total Enrolled: 456 Students</p>
                             <p className='fw-bold'>Rating: 4.5/5</p>
                             <p>
-                                <Link to='/' onClick={enrollCourse} className="btn btn-success">Enroll in this course</Link>
+                                {
+                                    studentLoginStatus == 'true'
+                                        ? enrollmentStatus === true
+                                            ?
+                                            <span className='text-success'>You are already enrolled in this course <Link to='/my-courses'>Go your courses page</Link></span>
+                                            :
+                                                <Link to='/' onClick={enrollCourse} className="btn btn-success">Enroll in this course</Link>
+                                        :
+                                            <Link to='/user-login' onClick={enrollCourse}>Please login for the enrollment in this course</Link>
+                                }
                             </p>
                         </div>
                     </div>

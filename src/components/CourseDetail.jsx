@@ -5,9 +5,12 @@ import axios from "axios";
 
 import Loader from "./Loader";
 import Messages from "./Messages";
+import {toast} from "react-toastify";
 
 const CourseDetail = () => {
     let {course_id} = useParams();
+    const studentLoginStatus = localStorage.getItem('studentLoginStatus');
+    const student_id = localStorage.getItem('student_id');
 
     // state data
     const [course, setCourse] = useState();
@@ -15,12 +18,11 @@ const CourseDetail = () => {
     const [related_courses, setRelatedCourses] = useState([]);
     const [chapters, setChapters] = useState([]);
     const [teacher, setTeacher] = useState();
-
     const [isLoading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const [errors, setErrors] = useState(null);
 
     const getCourse = async () => {
-        setLoading(true);
+        setLoading(true)
         const data = await axios
             .get(`${process.env.REACT_APP_API_BASE_URL}/api/courses/${course_id}`)
             .then((response) => {
@@ -29,13 +31,11 @@ const CourseDetail = () => {
                 setTeacher(response.data.teacher);
                 setRelatedCourses(response.data.related_courses);
                 setSkills(response.data.skill_list);
+                setLoading(false);
             })
-            .catch(
-                error => (
-                    setError(error.message)
-                )
-            );
-        setLoading(false);
+            .catch((errors) => {
+                setErrors(errors.response.data);
+            });
     };
 
     useEffect(() => {
@@ -43,16 +43,53 @@ const CourseDetail = () => {
         getCourse();
     }, [])
 
-    if (error) {
-
-        return <Messages variant="danger" message={error}/>
+    if (errors) {
+        Object.entries(errors).map(([key, value]) => (
+            <Messages variant="danger" message={`${key.toUpperCase()}: ${value}`} key={key} />
+        ))
     }
+
     if (isLoading) {
         return <Loader/>
     }
-    console.log('related_courses', related_courses);
-    console.log('chourse', course);
-    console.log('chapters', chapters);
+
+    const enrollCourse = (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('course', course_id)
+        formData.append('student', student_id)
+
+        axios.post(
+            `${process.env.REACT_APP_API_BASE_URL}/api/enrollments/`,
+            formData
+        )
+            .then((response) => {
+                toast.success('Course Registration Successfully', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            })
+            .catch((errors) => {
+                let msg = errors.response.data.non_field_errors;
+                toast.warning(`${msg}`, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+                console.log('enrollment errors', errors.response.data);
+            });
+    }
 
     if (course) {
         return (
@@ -80,6 +117,9 @@ const CourseDetail = () => {
                             <p className='fw-bold'>Course Duration: 30 Hours 30 Minutes</p>
                             <p className='fw-bold'>Total Enrolled: 456 Students</p>
                             <p className='fw-bold'>Rating: 4.5/5</p>
+                            <p>
+                                <Link to='/' onClick={enrollCourse} className="btn btn-success">Enroll in this course</Link>
+                            </p>
                         </div>
                     </div>
 

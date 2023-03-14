@@ -129,7 +129,7 @@ const CourseDetail = () => {
                                 }
                             </p>
                             <p className='fw-bold'>Course Duration: 30 Hours 30 Minutes</p>
-                            <p className='fw-bold'>Total Enrolled: 456 Students</p>
+                            <p className='fw-bold'>Total Enrolled: { course.total_enrolled_students } { course.total_enrolled_students <= 1 ? 'Student' : 'Students'}</p>
                             <p className='fw-bold'>Rating: 4.5/5</p>
                             <p>
                                 {

@@ -1,27 +1,29 @@
 import React, {useEffect, useState} from 'react';
-import { Link } from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import TeacherSidebar from './TeacherSidebar';
 import {isTeacherAuthenticated} from "../../functions";
 import axios from 'axios';
 
-const TeacherCourses = () => {
-    const user_id = localStorage.getItem('user_id')
+import Moment from 'react-moment';
+import 'moment-timezone';
 
-    const [courses, setCourses] = useState([]);
+const EnrolledStudents = () => {
+    const {course_id} = useParams();
+    const [enrollments, setEnrollments] = useState([]);
 
     useEffect(() => {
         isTeacherAuthenticated();
-        try {
             axios.get(
-                `${process.env.REACT_APP_API_BASE_URL}/api/teacher/${user_id}/courses/`,
+                `${process.env.REACT_APP_API_BASE_URL}/api/enrollments/courses/${course_id}/`,
             )
-            .then((response) => {
-                setCourses(response.data)
-            })
-        } catch (error) {
-            console.log(error)
-        }
-    }, [user_id])
+                .then((response) => {
+                    setEnrollments(response.data)
+                })
+                .catch((errors) => {
+                    console.log(errors.response.data)
+                })
+
+    }, [])
 
     return (
         <div className='container py-5'>
@@ -34,11 +36,7 @@ const TeacherCourses = () => {
                 {/* content */}
                 <section className='col-md-9'>
                     <div className='card'>
-                        <h5 className='card-header'>My Courses
-                            <span className='d-inline-block float-end'>
-                                <Link className='btn btn-sm btn-success ms-2' to='/teacher-add-course'> Add Course</Link>
-                            </span>
-                        </h5>
+                        <h5 className='card-header'>Enrolled Student List</h5>
                         <div className='card-body'>
                             <div className='table-responsive'>
                                 <table className='table table-bordered'>
@@ -46,31 +44,29 @@ const TeacherCourses = () => {
                                     <tr>
                                         <th>SL</th>
                                         <th>Name</th>
-                                        <th>Image</th>
-                                        <th>Total Enrolled</th>
+                                        <th>Email</th>
+                                        <th>Mobile No</th>
+                                        <th>Enroll Time</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
 
                                     <tbody>
                                     {
-                                        courses && courses.map((course, index) => (
+                                        enrollments && enrollments.map((enrollment, index) => (
                                             <tr key={index}>
                                                 <td>{ index + 1 }</td>
-                                                <td><Link to={`/courses/${course.id}/chapters/`}>{ course.title }</Link></td>
+                                                <td><Link to={`/enrollments/${enrollment.id}/`}>{ enrollment.student.full_name }</Link></td>
+                                                <td>{enrollment.student.email }</td>
+                                                <td>{enrollment.student.mobile_no }</td>
                                                 <td>
-                                                    <img src={course.featured_img} alt={course.title} style={{width:'80px'}} className="rounded" />
-                                                </td>
-                                                <td>
-                                                    <Link to={`/teacher-courses/enrollments/${course.id}`}>
-                                                        { course.total_enrolled_students }
-                                                    </Link>
+                                                    <Moment format="DD/MM/YYYY hh:mm:ss">
+                                                        { enrollment.enrolled_time }
+                                                    </Moment>
                                                 </td>
                                                 <td>
                                                     <div className="d-grid gap-2 d-md-block">
-                                                        <Link className='btn btn-sm btn-info' to={`/courses/${course.id}/edit/`}>Edit</Link>
-                                                        <Link className='btn btn-sm btn-primary ms-1' to={`/teacher-courses/enrollments/${course.id}`}>Enrollments</Link>
-                                                        <button className='btn btn-sm btn-danger ms-1'>Delete</button>
+                                                        <Link className='btn btn-sm btn-primary' to={`/enrollments/${enrollment.id}`}>View</Link>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -87,4 +83,4 @@ const TeacherCourses = () => {
     );
 };
 
-export default TeacherCourses;
+export default EnrolledStudents;

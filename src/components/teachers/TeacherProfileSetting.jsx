@@ -3,6 +3,7 @@ import TeacherSidebar from './TeacherSidebar';
 import {isTeacherAuthenticated} from "../../functions";
 import axios from "axios";
 import {toast} from "react-toastify";
+import Messages from "../Messages";
 
 const TeacherProfileSetting = () => {
     const user_id = localStorage.getItem('user_id')
@@ -123,7 +124,13 @@ const TeacherProfileSetting = () => {
                         <h5 className='card-header'>Profile Setting</h5>
                         <div className='card-body'>
                             <form className="row g-3">
-                                
+                                <div className="mb-3 row mt-4">
+                                {
+                                    errors && Object.entries(errors).map(([key, value]) => (
+                                        <Messages variant="danger" message={`${key.toUpperCase()}: ${value}`} key={key} />
+                                    ))
+                                }
+                                </div>
                                 <div className="mb-3 row mt-4">
                                     <label htmlFor="full_name" className="col-sm-2 col-form-label">Full Name</label>
                                     <div className="col-sm-10">

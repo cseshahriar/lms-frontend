@@ -107,6 +107,7 @@ const AllChapters = () => {
                                                     <th>Title</th>
                                                     <th>Video</th>
                                                     <th>Remarks</th>
+                                                    <th>Duration</th>
                                                     <th>Action</th>
                                                 </tr>
                                                 </thead>
@@ -125,6 +126,7 @@ const AllChapters = () => {
                                                                 </video>
                                                             </td>
                                                             <td>{ chapter.remarks }</td>
+                                                            <td>{ chapter.duration }</td>
                                                             <td>
                                                                 <Link to={`/chapters/${chapter.id}/edit/`} className='btn btn-info btn-sm text-white'>
                                                                     <i  className="bi bi-pencil-square"></i>

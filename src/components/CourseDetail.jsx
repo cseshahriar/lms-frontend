@@ -158,7 +158,7 @@ const CourseDetail = () => {
                                     <li className='list-group-item' key={chapter.id}>{ chapter.title }
 
                                         <span className='float-end'>
-                                            <span className='me-5'>1 Hour 30 Minutes</span>
+                                            <span className='me-5'>{ chapter.duration }</span>
                                             <button type="button" className="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target={`#exampleModal${chapter.id}`} >
                                                 <i className="bi bi-youtube"></i>
                                             </button>

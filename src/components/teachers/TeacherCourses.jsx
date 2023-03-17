@@ -48,6 +48,7 @@ const TeacherCourses = () => {
                                         <th>Name</th>
                                         <th>Image</th>
                                         <th>Total Enrolled</th>
+                                        <th>Duration</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -70,6 +71,7 @@ const TeacherCourses = () => {
                                                         { course.total_enrolled_students }
                                                     </Link>
                                                 </td>
+                                                <td>{course.duration}</td>
                                                 <td>
                                                     <div className="d-grid gap-2 d-md-block">
                                                         <Link className='btn btn-sm btn-info' to={`/courses/${course.id}/edit/`}>Edit</Link>

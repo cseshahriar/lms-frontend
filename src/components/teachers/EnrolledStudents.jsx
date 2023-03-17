@@ -12,6 +12,8 @@ const EnrolledStudents = () => {
     const [enrollments, setEnrollments] = useState([]);
 
     useEffect(() => {
+        document.title="Enrolled Student List"
+
         isTeacherAuthenticated();
             axios.get(
                 `${process.env.REACT_APP_API_BASE_URL}/api/enrollments/courses/${course_id}/`,
@@ -47,7 +49,7 @@ const EnrolledStudents = () => {
                                         <th>Email</th>
                                         <th>Mobile No</th>
                                         <th>Enroll Time</th>
-                                        <th>Action</th>
+                                        <th>Interested Categories </th>
                                     </tr>
                                     </thead>
 
@@ -56,7 +58,7 @@ const EnrolledStudents = () => {
                                         enrollments && enrollments.map((enrollment, index) => (
                                             <tr key={index}>
                                                 <td>{ index + 1 }</td>
-                                                <td><Link to={`/enrollments/${enrollment.id}/`}>{ enrollment.student.full_name }</Link></td>
+                                                <td>{ enrollment.student.full_name }</td>
                                                 <td>{enrollment.student.email }</td>
                                                 <td>{enrollment.student.mobile_no }</td>
                                                 <td>
@@ -66,7 +68,7 @@ const EnrolledStudents = () => {
                                                 </td>
                                                 <td>
                                                     <div className="d-grid gap-2 d-md-block">
-                                                        <Link className='btn btn-sm btn-primary' to={`/enrollments/${enrollment.id}`}>View</Link>
+                                                        { enrollment.course.title }
                                                     </div>
                                                 </td>
                                             </tr>

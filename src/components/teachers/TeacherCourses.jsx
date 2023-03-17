@@ -57,7 +57,11 @@ const TeacherCourses = () => {
                                         courses && courses.map((course, index) => (
                                             <tr key={index}>
                                                 <td>{ index + 1 }</td>
-                                                <td><Link to={`/courses/${course.id}/chapters/`}>{ course.title }</Link></td>
+                                                <td>
+                                                    <Link to={`/courses/${course.id}/chapters/`}>{ course.title }</Link>
+                                                    <hr/>
+
+                                                </td>
                                                 <td>
                                                     <img src={course.featured_img} alt={course.title} style={{width:'80px'}} className="rounded" />
                                                 </td>

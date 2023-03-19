@@ -130,7 +130,48 @@ const CourseDetail = () => {
                             </p>
                             <p className='fw-bold'>Course Duration: { course.duration }</p>
                             <p className='fw-bold'>Total Enrolled: { course.total_enrolled_students } { course.total_enrolled_students <= 1 ? 'Student' : 'Students'}</p>
-                            <p className='fw-bold'>Rating: {course.course_rating}/5</p>
+                            <p className='fw-bold'>Rating: &nbsp;
+                                <span className="badge rounded-pill text-bg-primary">
+                                    {course.course_rating}/5
+                                </span>
+                                <br/><br/>
+                                <button type="button" className="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    Rate for {course.title}
+                                </button>
+
+                                <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div className="modal-dialog modal-lg">
+                                        <div className="modal-content">
+                                            <div className="modal-header">
+                                                <h1 className="modal-title fs-5" id="exampleModalLabel"> Rate for {course.title}</h1>
+                                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+
+                                            <div className="modal-body">
+                                                <form>
+                                                    <div className="mb-3">
+                                                        <label htmlFor="exampleInputPassword1" className="form-label">Rating</label>
+                                                        <input type="number" className="form-control" id="rating" />
+                                                    </div>
+
+                                                    <div className="mb-3">
+                                                        <label htmlFor="exampleInputPassword1"
+                                                               className="form-label">Comment</label>
+                                                        <textarea name="comment" className="form-control"></textarea>
+                                                    </div>
+                                                    <button type="submit" className="btn btn-primary">Submit</button>
+                                                </form>
+                                            </div>
+
+                                            <div className="modal-footer">
+                                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="button" className="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </p>
                             <p>
                                 {
                                     studentLoginStatus == 'true'

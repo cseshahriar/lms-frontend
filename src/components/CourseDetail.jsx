@@ -9,8 +9,8 @@ import {toast} from "react-toastify";
 
 const CourseDetail = () => {
     let {course_id} = useParams();
-    const studentLoginStatus = localStorage.getItem('studentLoginStatus');
     const student_id = localStorage.getItem('student_id');
+    const studentLoginStatus = localStorage.getItem('studentLoginStatus');
 
     // state data
     const [course, setCourse] = useState();
@@ -20,25 +20,42 @@ const CourseDetail = () => {
     const [teacher, setTeacher] = useState();
     const [isLoading, setLoading] = useState(false);
     const [errors, setErrors] = useState(null);
-
     const [enrollmentStatus, setEnrollmentStatus] = useState(false);
+    const [ratingStatus, setRatingStatus] = useState(false);
+    const [ratingData, setRatingData] = useState({
+        'course': parseInt(course_id),
+        'student': parseInt(student_id),
+        'rating': '',
+        'comment': ''
+    });
 
+    // rating for data
     const getCourse = async () => {
         setLoading(true)
-        const data = await axios
+        await axios
             .get(`${process.env.REACT_APP_API_BASE_URL}/api/courses/${course_id}`)
             .then((response) => {
+                // set data from course
                 setCourse(response.data);
                 setChapters(response.data.course_chapters);
                 setTeacher(response.data.teacher);
                 setRelatedCourses(response.data.related_courses);
                 setSkills(response.data.skill_list);
+
+                setRatingData({
+                    'course': parseInt(course_id),
+                    'student': parseInt(student_id),
+                    'rating': '',
+                    'comment': ''
+                })
+
                 setLoading(false);
             })
             .catch((errors) => {
-                setErrors(errors.response.data);
+                    setErrors(errors.response.data);
             });
     };
+
 
     const getEnrollmentStatus = () => {
         axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/enrollment_status/${course_id}/${student_id}/`)
@@ -50,11 +67,21 @@ const CourseDetail = () => {
             });
     }
 
+    const getRatingStatus = () => {
+        axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/rating_status/${course_id}/${student_id}/`)
+            .then((response) => {
+                setRatingStatus(response.data.bool);
+            })
+            .catch((errors) => {
+                setErrors(errors.response.data);
+            });
+    }
+
     useEffect(() => {
         document.title = "Course Detail Page"
         getCourse();
         getEnrollmentStatus();
-
+        getRatingStatus();
     }, [])
 
     if (errors) {
@@ -105,6 +132,59 @@ const CourseDetail = () => {
             });
     }
 
+    const handleChange = (event) => {
+        setRatingData({
+            ...ratingData, [event.target.name]: event.target.value
+        })
+    }
+
+    const submitCourseRating = (e) => {
+        e.preventDefault();
+        const ratingFormData = new FormData();
+        ratingFormData.append('course', parseInt(ratingData.course))
+        ratingFormData.append('student', parseInt(ratingData.student))
+        ratingFormData.append('rating', ratingData.rating)
+        ratingFormData.append('comment', ratingData.comment)
+
+        console.log('type of', typeof ratingData.course)
+
+        axios.post(
+            `${process.env.REACT_APP_API_BASE_URL}/api/course-rating/`,
+            ratingFormData
+        )
+            .then((response) => {
+                toast.success('Rating successfully submitted', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+                setRatingData({
+                    'course': '',
+                    'student': '',
+                    'rating': '',
+                    'comment': ''
+                })
+            })
+            .catch((errors) => {
+                setErrors(errors.response.data);
+            });
+    }
+
+    const modalCloseHandle = (e) => {
+        setRatingData({
+            'course': '',
+            'student': '',
+            'rating': '',
+            'comment': ''
+        })
+    }
+
+
     if (course) {
         return (
             <div className="container py-5">
@@ -134,44 +214,68 @@ const CourseDetail = () => {
                                 <span className="badge rounded-pill text-bg-primary">
                                     {course.course_rating}/5
                                 </span>
-                                <br/><br/>
-                                <button type="button" className="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    Leave a review
-                                </button>
+                            </p>
 
-                                <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div className="modal-dialog modal-lg">
-                                        <div className="modal-content">
-                                            <div className="modal-header">
-                                                <h1 className="modal-title fs-5" id="exampleModalLabel"> Rate for {course.title}</h1>
-                                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
 
-                                            <div className="modal-body">
-                                                <form>
-                                                    <div className="mb-3">
-                                                        <label htmlFor="exampleInputPassword1" className="form-label">Rating</label>
-                                                        <select className='form-control' name='rating'>
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
-                                                            <option value="4">4</option>
-                                                            <option value="5">5</option>
-                                                        </select>
-                                                    </div>
+                            {/* rating modal start */}
+                            {
+                                studentLoginStatus == 'true' ?
+                                     enrollmentStatus === true ?
+                                         ratingStatus == true
+                                             ?
 
-                                                    <div className="mb-3">
-                                                        <label htmlFor="exampleInputPassword1" className="form-label">Review</label>
-                                                        <textarea name="comment" className="form-control" rows="5"></textarea>
-                                                    </div>
-                                                    <button type="submit" className="btn btn-primary">Submit</button>
-                                                </form>
-                                            </div>
+                                             <span className='text-success'>You are already given rating for this course</span>
+                                         :
+                                             <button type="button" className="btn btn-success btn-sm mt-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                 Leave a review
+                                             </button>
+                                     :
+                                         null
+                                :
+                                    null
+                            }
+
+                            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div className="modal-dialog modal-lg">
+                                    <div className="modal-content">
+                                        <div className="modal-header">
+                                            <h1 className="modal-title fs-5" id="exampleModalLabel"> Rate for {course.title}</h1>
+                                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+
+                                        <div className="modal-body">
+                                            <form>
+                                                {
+                                                    errors && Object.entries(errors).map(([key, value]) => (
+                                                        <Messages variant="danger" message={`${key.toUpperCase()}: ${value}`} key={key} />
+                                                    ))
+                                                }
+                                                <div className="mb-3">
+                                                    <label htmlFor="exampleInputPassword1" className="form-label">Rating</label>
+                                                    <select className='form-control' name='rating' onChange={handleChange}>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                    </select>
+                                                </div>
+
+                                                <div className="mb-3">
+                                                    <label htmlFor="exampleInputPassword1" className="form-label">Review</label>
+                                                    <textarea name="comment" className="form-control" rows="5" onChange={handleChange} value={ratingData.comment}></textarea>
+                                                </div>
+                                                <div className="mb-3 d-flex justify-content-center">
+                                                    <button onClick={modalCloseHandle} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button onClick={submitCourseRating} type="submit" className="btn btn-success ms-1">Submit</button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            {/* rating modal end */}
 
-                            </p>
                             <p>
                                 {
                                     studentLoginStatus == 'true'
@@ -181,7 +285,7 @@ const CourseDetail = () => {
                                             :
                                                 <Link to='/' onClick={enrollCourse} className="btn btn-success">Enroll in this course</Link>
                                         :
-                                            <Link to='/user-login' onClick={enrollCourse}>Please login for the enrollment in this course</Link>
+                                            <Link to='/user-login' >Please login for the enrollment in this course</Link>
                                 }
                             </p>
                         </div>

@@ -135,8 +135,8 @@ const CourseDetail = () => {
                                     {course.course_rating}/5
                                 </span>
                                 <br/><br/>
-                                <button type="button" className="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    Rate for {course.title}
+                                <button type="button" className="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    Leave a review
                                 </button>
 
                                 <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -151,21 +151,21 @@ const CourseDetail = () => {
                                                 <form>
                                                     <div className="mb-3">
                                                         <label htmlFor="exampleInputPassword1" className="form-label">Rating</label>
-                                                        <input type="number" className="form-control" id="rating" />
+                                                        <select className='form-control' name='rating'>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                        </select>
                                                     </div>
 
                                                     <div className="mb-3">
-                                                        <label htmlFor="exampleInputPassword1"
-                                                               className="form-label">Comment</label>
-                                                        <textarea name="comment" className="form-control"></textarea>
+                                                        <label htmlFor="exampleInputPassword1" className="form-label">Review</label>
+                                                        <textarea name="comment" className="form-control" rows="5"></textarea>
                                                     </div>
                                                     <button type="submit" className="btn btn-primary">Submit</button>
                                                 </form>
-                                            </div>
-
-                                            <div className="modal-footer">
-                                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <button type="button" className="btn btn-primary">Save changes</button>
                                             </div>
                                         </div>
                                     </div>

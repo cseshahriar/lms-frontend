@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { useNavigate } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import TeacherSidebar from './TeacherSidebar';
 import axios from "axios";
 import Messages from "../Messages";
@@ -51,7 +51,9 @@ const TeacherDashboard = () => {
                                     Total Courses
                                 </div>
                                 <div className="card-body">
-                                    <h5 className="card-title">{ teacher.total_courses }</h5>
+                                    <h5 className="card-title">
+                                        <Link to='/teacher-courses'>{ teacher.total_courses }</Link>
+                                    </h5>
                                 </div>
                             </div>
                         </div>
@@ -62,7 +64,11 @@ const TeacherDashboard = () => {
                                     Total Chapters
                                 </div>
                                 <div className="card-body">
-                                    <h5 className="card-title">{ teacher.total_chapters }</h5>
+                                    <h5 className="card-title">
+                                        <Link to='#'>
+                                            { teacher.total_chapters }
+                                        </Link>
+                                    </h5>
                                 </div>
                             </div>
                         </div>
@@ -73,7 +79,9 @@ const TeacherDashboard = () => {
                                     Total Students
                                 </div>
                                 <div className="card-body">
-                                    <h5 className="card-title">{ teacher.total_students }</h5>
+                                    <h5 className="card-title">
+                                        <Link to='/teacher-users-list'>{ teacher.total_students }</Link>
+                                    </h5>
                                 </div>
                             </div>
                         </div>

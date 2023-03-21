@@ -6,10 +6,10 @@
 ### `npm start`
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-![lms7](https://user-images.githubusercontent.com/28825857/226624284-95a408b8-0e45-403e-a4da-f7fbdef664e2.png)
 
-![lms-6](https://user-images.githubusercontent.com/28825857/226508773-a1ded624-723f-4d3f-8699-aea8efe88c6b.png)
 ![lms-5](https://user-images.githubusercontent.com/28825857/226508779-f51a6739-d818-41f0-a08a-ad1f1a30bdd1.png)
+![lms-6](https://user-images.githubusercontent.com/28825857/226508773-a1ded624-723f-4d3f-8699-aea8efe88c6b.png)
+![lms7](https://user-images.githubusercontent.com/28825857/226624284-95a408b8-0e45-403e-a4da-f7fbdef664e2.png)
 ![lms-4](https://user-images.githubusercontent.com/28825857/226508782-4a164dcd-24d6-4bd9-aadc-091914846ee0.png)
 ![lms-3](https://user-images.githubusercontent.com/28825857/226508783-ec9ed50a-26db-48bf-a73a-198f17e535bb.png)
 ![lms-detail](https://user-images.githubusercontent.com/28825857/226508787-33b45c6c-1692-461f-b911-7535f77953a7.png)

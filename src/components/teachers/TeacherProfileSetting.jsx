@@ -108,8 +108,6 @@ const TeacherProfileSetting = () => {
         })
     }
 
-    console.log(teacherData);
-
     return (
         <div className='container py-5'>
             <div className='row'>

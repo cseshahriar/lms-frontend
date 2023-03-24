@@ -1,11 +1,29 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import Sidebar from './Sidebar';
+import axios from "axios";
+import Moment from 'react-moment';
 
 const MyCourses = () => {
+    const studentLoginStatus = localStorage.getItem('studentLoginStatus');
+    const student_id = localStorage.getItem('student_id');
+    const [enrollments, setEnrollments] = useState([]);
+
     useEffect(() => {
-        document.title="My Courses"
-    })
+        document.title="My Courses";
+        // get enrolments
+        axios.get(
+            `${process.env.REACT_APP_API_BASE_URL}/api/enrollments?student_id=${student_id}`,
+        )
+        .then((response) => {
+            setEnrollments(response.data)
+        })
+        .catch((errors) => {
+            console.log(errors.response.data)
+        })
+    }, [])
+
+    console.log(enrollments)
 
     return (
         <div className='container py-5'>
@@ -25,22 +43,28 @@ const MyCourses = () => {
                                     <tr>
                                         <th>SL</th>
                                         <th>Name</th>
-                                        <th>Created By</th>
-                                        <th>Action</th>
+                                        <th>Duration</th>
+                                        <th>Technologies</th>
+                                        <th>Enrolled Time</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Python Development</td>
-                                        <td>
-                                            <Link to={`/teachers/${1}`}>Shahriar Hosen</Link>
-                                        </td>
-                                        <td>
-                                            <button className='btn btn-sm btn-danger'>Delete</button>
-                                        </td>
-                                    </tr>
+                                    { enrollments && enrollments.map((el, index) => (
+                                        <tr key={el.id}>
+                                            <td>{ index + 1}</td>
+                                            <td>
+                                                <Link to={`courses/${el.course.id}`}>{ el.course.title }</Link>
+                                            </td>
+                                            <td>{ el.course.duration }</td>
+                                            <td>{ el.course.technologies }</td>
+                                            <td>
+                                                <Moment parse="YYYY-MM-DD HH:mm">
+                                                    { el.enrolled_time }
+                                                </Moment>
+                                            </td>
+                                        </tr>
+                                    ))}
                                 </tbody>
                             </table>
                         </div>

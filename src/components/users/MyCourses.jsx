@@ -1,16 +1,22 @@
 import React, {useEffect, useState} from 'react';
-import { Link } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import Sidebar from './Sidebar';
 import axios from "axios";
 import Moment from 'react-moment';
 
 const MyCourses = () => {
+    const navigate = useNavigate();
     const studentLoginStatus = localStorage.getItem('studentLoginStatus');
     const student_id = localStorage.getItem('student_id');
     const [enrollments, setEnrollments] = useState([]);
 
     useEffect(() => {
         document.title="My Courses";
+        // login check
+        if(studentLoginStatus !== 'true') {
+            navigate('/user-login')
+        }
+
         // get enrolments
         axios.get(
             `${process.env.REACT_APP_API_BASE_URL}/api/enrollments?student_id=${student_id}`,

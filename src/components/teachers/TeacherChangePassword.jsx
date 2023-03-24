@@ -73,6 +73,9 @@ const TeacherChangePassword = () => {
                         progress: undefined,
                         theme: "light",
                     });
+                    localStorage.removeItem('teacherLoginStatus')
+                    localStorage.removeItem('user_id')
+                    localStorage.removeItem('user_name')
                     navigate('/teacher-login');
                 }).catch((errors) => {
                 setErrors(errors.response.data);

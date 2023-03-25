@@ -1,11 +1,35 @@
-import React, {useEffect} from 'react';
-import { Link } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {Link, useNavigate} from 'react-router-dom';
 import Sidebar from './Sidebar';
+import axios from "axios";
+import Moment from 'react-moment';
 
 const RecommendedCourses = () => {
+    const navigate = useNavigate();
+    const studentLoginStatus = localStorage.getItem('studentLoginStatus');
+    const student_id = localStorage.getItem('student_id');
+    const [enrollments, setEnrollments] = useState([]);
+
     useEffect(() => {
-        document.title="Recommended Courses"
-    })
+        document.title="Recommended Courses";
+        // login check
+        if(studentLoginStatus !== 'true') {
+            navigate('/user-login')
+        }
+
+        // get enrolments
+        axios.get(
+            `${process.env.REACT_APP_API_BASE_URL}/api/enrollments?studentId=${student_id}`,
+        )
+            .then((response) => {
+                setEnrollments(response.data)
+            })
+            .catch((errors) => {
+                console.log(errors.response.data)
+            })
+    }, [])
+
+    console.log(enrollments)
 
     return (
         <div className='container py-5'>
@@ -18,29 +42,35 @@ const RecommendedCourses = () => {
                 {/* content */}
                 <section className='col-md-9'>
                     <div className='card'>
-                        <h5 className='card-header'>Recommended Courses</h5>
+                        <h5 className='card-header'>My Courses</h5>
                         <div className='card-body'>
                             <table className='table table-bordered'>
                                 <thead>
-                                    <tr>
-                                        <th>SL</th>
-                                        <th>Name</th>
-                                        <th>Created By</th>
-                                        <th>Action</th>
-                                    </tr>
+                                <tr>
+                                    <th>SL</th>
+                                    <th>Name</th>
+                                    <th>Duration</th>
+                                    <th>Technologies</th>
+                                    <th>Enrolled Time</th>
+                                </tr>
                                 </thead>
 
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Python Development</td>
+                                { enrollments && enrollments.map((el, index) => (
+                                    <tr key={el.id}>
+                                        <td>{ index + 1}</td>
                                         <td>
-                                            <Link to={`/teachers/${1}`}>Shahriar Hosen</Link>
+                                            <Link to={`courses/${el.course.id}`}>{ el.course.title }</Link>
                                         </td>
+                                        <td>{ el.course.duration }</td>
+                                        <td>{ el.course.technologies }</td>
                                         <td>
-                                            <button className='btn btn-sm btn-danger'>Delete</button>
+                                            <Moment parse="YYYY-MM-DD HH:mm">
+                                                { el.enrolled_time }
+                                            </Moment>
                                         </td>
                                     </tr>
+                                ))}
                                 </tbody>
                             </table>
                         </div>

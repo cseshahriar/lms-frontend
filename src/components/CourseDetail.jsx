@@ -7,6 +7,7 @@ import Loader from "./Loader";
 import Messages from "./Messages";
 import {toast} from "react-toastify";
 
+
 const CourseDetail = () => {
     let {course_id} = useParams();
     const student_id = localStorage.getItem('student_id');
@@ -22,6 +23,8 @@ const CourseDetail = () => {
     const [errors, setErrors] = useState(null);
     const [enrollmentStatus, setEnrollmentStatus] = useState(false);
     const [ratingStatus, setRatingStatus] = useState(false);
+    const [favoriteStatus, setFavoriteStatus] = useState(false);
+
     const [ratingData, setRatingData] = useState({
         'course': parseInt(course_id),
         'student': parseInt(student_id),
@@ -67,6 +70,16 @@ const CourseDetail = () => {
             });
     }
 
+    const getCourseFavoriteStatus = () => {
+        axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/favorite_status/${course_id}/${student_id}/`)
+            .then((response) => {
+                setFavoriteStatus(response.data.bool);
+            })
+            .catch((errors) => {
+                setErrors(errors.response.data);
+            });
+    }
+
     const getRatingStatus = () => {
         axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/rating_status/${course_id}/${student_id}/`)
             .then((response) => {
@@ -82,6 +95,7 @@ const CourseDetail = () => {
         getCourse();
         getEnrollmentStatus();
         getRatingStatus();
+        getCourseFavoriteStatus();
     }, [])
 
     if (errors) {
@@ -184,6 +198,33 @@ const CourseDetail = () => {
         })
     }
 
+    // make as favourite
+    const makeFavourite = (e) => {
+        e.preventDefault();
+        const favoriteFormData = new FormData();
+        favoriteFormData.append('course', parseInt(course_id))
+        favoriteFormData.append('student', parseInt(student_id))
+        axios.post(
+            `${process.env.REACT_APP_API_BASE_URL}/api/favorites/`,
+            favoriteFormData
+        )
+            .then((response) => {
+                toast.success('Favorite successful', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+                getCourseFavoriteStatus();
+            })
+            .catch((errors) => {
+                setErrors(errors.response.data);
+            });
+    }
 
     if (course) {
         return (
@@ -217,13 +258,32 @@ const CourseDetail = () => {
                             </p>
 
 
+                            {/* favoriteStatus  */}
+                            <p>
+                                { favoriteStatus == true ? 'Favorite Course' : 'Make Favorite Coruse' }
+                                &nbsp;
+                                {
+                                    studentLoginStatus == 'true'
+                                        ?
+                                            favoriteStatus == true ? (
+                                                <button title="Favourite course." disabled className='btn btn-sm btn-success'>
+                                                    <i className="bi bi-heart-fill"></i>
+                                                </button>
+                                            ) : (
+                                                <button title="Add in your favourite course list." onClick={makeFavourite} className='btn btn-sm btn-outline-danger'>
+                                                    <i className="bi bi-heart-fill"></i>
+                                                </button>
+                                            ) :
+                                        null
+                                }
+                            </p>
+
                             {/* rating modal start */}
                             {
                                 studentLoginStatus == 'true' ?
                                      enrollmentStatus === true ?
                                          ratingStatus == true
                                              ?
-
                                              <span className='text-success'>You are already given rating for this course</span>
                                          :
                                              <button type="button" className="btn btn-success btn-sm mt-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -288,6 +348,7 @@ const CourseDetail = () => {
                                             <Link to='/user-login' >Please login for the enrollment in this course</Link>
                                 }
                             </p>
+
                         </div>
                     </div>
 

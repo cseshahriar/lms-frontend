@@ -46,6 +46,7 @@ const TeacherUserList = () => {
                                     <th>Email</th>
                                     <th>Mobile No</th>
                                     <th>Interested Categories </th>
+                                    <th>Assignment</th>
                                 </tr>
                                 </thead>
 
@@ -61,6 +62,10 @@ const TeacherUserList = () => {
                                                 <div className="d-grid gap-2 d-md-block">
                                                     { enrollment.student.interested_categories }
                                                 </div>
+                                            </td>
+                                            <td>
+                                                <Link to='#' className='btn btn-sm btn-warning'>Assignments</Link>
+                                                <Link to='#' className='ms-2 btn btn-sm btn-success'>Add Assignment</Link>
                                             </td>
                                         </tr>
                                     ))

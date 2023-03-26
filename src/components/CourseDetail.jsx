@@ -226,6 +226,29 @@ const CourseDetail = () => {
             });
     }
 
+    const removeFavourite = (e) => {
+        e.preventDefault();
+        axios.post(
+            `${process.env.REACT_APP_API_BASE_URL}/api/remove_favorite_status/${parseInt(course_id)}/${parseInt(student_id)}/`,
+        )
+            .then((response) => {
+                toast.success('Remove from favorite successful', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+                getCourseFavoriteStatus();
+            })
+            .catch((errors) => {
+                setErrors(errors.response.data);
+            });
+    }
+
     if (course) {
         return (
             <div className="container py-5">
@@ -260,17 +283,17 @@ const CourseDetail = () => {
 
                             {/* favoriteStatus  */}
                             <p>
-                                { favoriteStatus == true ? 'Favorite Course' : 'Make Favorite Coruse' }
+                                { favoriteStatus == true ? 'Remove Favorite' : 'Make Favorite' }
                                 &nbsp;
                                 {
                                     studentLoginStatus == 'true'
                                         ?
                                             favoriteStatus == true ? (
-                                                <button title="Favourite course." disabled className='btn btn-sm btn-success'>
+                                                <button onClick={removeFavourite} title="Remove favourite course." className='btn btn-sm btn-danger'>
                                                     <i className="bi bi-heart-fill"></i>
                                                 </button>
                                             ) : (
-                                                <button title="Add in your favourite course list." onClick={makeFavourite} className='btn btn-sm btn-outline-danger'>
+                                                <button title="Add in your favourite course list." onClick={makeFavourite} className='btn btn-sm btn-outline-secondary'>
                                                     <i className="bi bi-heart-fill"></i>
                                                 </button>
                                             ) :

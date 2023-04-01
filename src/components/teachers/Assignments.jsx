@@ -9,10 +9,23 @@ const Assignments = () => {
     const { student_id } = useParams();
     const user_id = localStorage.getItem('user_id')
     const [data, setData] = useState([]);
+    const [student, setStudent] = useState();
     const [errors, setErrors] = useState([]);
+
 
     useEffect(() => {
         isTeacherAuthenticated();
+
+        axios.get(
+            `${process.env.REACT_APP_API_BASE_URL}/api/students/${student_id}`,
+        )
+            .then((response) => {
+                setStudent(response.data)
+            })
+            .catch((errors) => {
+                setErrors(errors.response.data);
+            })
+
         axios.get(
             `${process.env.REACT_APP_API_BASE_URL}/api/assignments/?student_id=${student_id}`,
         )
@@ -41,7 +54,7 @@ const Assignments = () => {
                     {/* content */}
                     <section className='col-md-9'>
                         <div className='card'>
-                            <h5 className='card-header'>Assignments of { data && data[0].student.full_name }</h5>
+                            <h5 className='card-header'>Assignments of { student && student.full_name }</h5>
                             <div className='card-body'>
                                 <table className='table table-bordered'>
                                     <thead>

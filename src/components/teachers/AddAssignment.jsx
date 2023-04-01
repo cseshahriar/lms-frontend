@@ -14,6 +14,7 @@ const AddAssignment = () => {
     console.log('student id', student_id, ' user id', user_id)
 
     // states
+    const [student, setStudent] = useState([]);
     const [errors, setErrors] = useState([]);
     const [ isAlertVisible, setIsAlertVisible ] = useState(false);
 
@@ -26,6 +27,17 @@ const AddAssignment = () => {
         document.title="Add Assignment"
         // auth check
         isTeacherAuthenticated();
+
+        axios.get(
+            `${process.env.REACT_APP_API_BASE_URL}/api/students/${student_id}`,
+        )
+            .then((response) => {
+                setStudent(response.data)
+            })
+            .catch((errors) => {
+                setErrors(errors.response.data);
+            })
+
     }, [])
 
     const handleChange = (event) => {
@@ -78,7 +90,7 @@ const AddAssignment = () => {
                 {/* content */}
                 <section className='col-md-9'>
                     <div className='card'>
-                        <h5 className="card-header">Add Assignment</h5>
+                        <h5 className="card-header">Add Assignment for { student && student.full_name }</h5>
                         <div className='card-body'>
                             <form>
                                 {

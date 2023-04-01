@@ -63,8 +63,8 @@ const TeacherUserList = () => {
                                                 </div>
                                             </td>
                                             <td>
-                                                <Link to='#' className='btn btn-sm btn-warning'>Assignments</Link>
-                                                <Link to={`/add-assignment/student/${enrollment.student.id}`} className='ms-2 btn btn-sm btn-success'>Add Assignment</Link>
+                                                <Link to={`/student/${enrollment.student.id}/assignments`} className='btn btn-sm btn-warning'>Assignments</Link>
+                                                <Link to={`/student/${enrollment.student.id}/add-assignment`} className='ms-2 btn btn-sm btn-success'>Add Assignment</Link>
                                             </td>
                                         </tr>
                                     ))

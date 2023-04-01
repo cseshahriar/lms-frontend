@@ -47,7 +47,7 @@ import EditChapter from "./teachers/EditChapter";
 import EditCourse from "./teachers/EditCourse";
 import TeacherSkillCourse from "./TeacherSkillCourse";
 import EnrolledStudents from "./teachers/EnrolledStudents";
-
+import AddAssignment from "./teachers/AddAssignment";
 
 const Main = () => {
 
@@ -98,6 +98,8 @@ const Main = () => {
                 <Route path="/chapters/:chapter_id/edit/" element={<EditChapter />} />
 
                 <Route path="/teacher-users-list" element={<TeacherUserList />} />
+                <Route path="/add-assignment/student/:student_id" element={<AddAssignment />} />
+
                 <Route path="/teacher-logout" element={<TeacherLogout />} />
             </Routes>
 

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import TeacherSidebar from './TeacherSidebar';
 import {isTeacherAuthenticated} from "../../functions";
 import axios from "axios";
-import Moment from "react-moment";
 
 const TeacherUserList = () => {
     const user_id = localStorage.getItem('user_id')
@@ -65,7 +64,7 @@ const TeacherUserList = () => {
                                             </td>
                                             <td>
                                                 <Link to='#' className='btn btn-sm btn-warning'>Assignments</Link>
-                                                <Link to='#' className='ms-2 btn btn-sm btn-success'>Add Assignment</Link>
+                                                <Link to={`/add-assignment/student/${enrollment.student.id}`} className='ms-2 btn btn-sm btn-success'>Add Assignment</Link>
                                             </td>
                                         </tr>
                                     ))

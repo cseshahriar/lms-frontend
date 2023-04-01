@@ -63,6 +63,7 @@ const Assignments = () => {
                                         <th>Title</th>
                                         <th>Detail</th>
                                         <th>Date</th>
+                                        <th>Status</th>
                                     </tr>
                                     </thead>
 
@@ -74,6 +75,14 @@ const Assignments = () => {
                                                 <td>{ assignment.title }</td>
                                                 <td>{assignment.detail }</td>
                                                 <td>{assignment.created_at }</td>
+                                                <td>
+                                                    {
+                                                        assignment.student_status != true ?
+                                                            <span className='badge bg-success'>Pending</span>
+                                                            :
+                                                            <span className='badge bg-success'>Completed</span>
+                                                    }
+                                                </td>
                                             </tr>
                                         ))
                                     }

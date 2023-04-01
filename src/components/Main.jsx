@@ -30,6 +30,7 @@ import ProfileSetting from './users/ProfileSetting';
 import ChangePassword from './users/ChangePassword';
 import FavoriteCourses from "./users/FavoriteCourses";
 import RecommendedCourses from "./users/RecommendedCourses";
+import StudentAssignments from "./users/Assignments";
 
 // ============================ teachers components ===============================
 import TeacherDashboard from "./teachers/TeacherDashboard";
@@ -49,6 +50,7 @@ import TeacherSkillCourse from "./TeacherSkillCourse";
 import EnrolledStudents from "./teachers/EnrolledStudents";
 import AddAssignment from "./teachers/AddAssignment";
 import Assignments from "./teachers/Assignments";
+
 
 const Main = () => {
 
@@ -78,6 +80,7 @@ const Main = () => {
                 <Route path="/my-courses" element={<MyCourses />} />
                 <Route path="/favorite-courses" element={<FavoriteCourses />} />
                 <Route path="/recommended-courses" element={<RecommendedCourses />} />
+                <Route path="/assignments" element={<StudentAssignments />} />
                 <Route path="/profile-setting" element={<ProfileSetting />} />
                 <Route path="/change-password" element={<ChangePassword />} />
                 <Route path="/logout" element={<UserLogin />} />

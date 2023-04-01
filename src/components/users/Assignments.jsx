@@ -115,7 +115,13 @@ const StudentAssignments = () => {
                                                 <td>
                                                     {
                                                         assignment.student_status != true ?
-                                                            <button onClick={() => makeDone(assignment.id)} className='btn btn-primary btn-sm'>Mark as Done</button>
+                                                            <button
+                                                                onClick={ () => {
+                                                                    if(window.confirm('Are you sure to delete this record?')) {
+                                                                        makeDone(assignment.id)
+                                                                    };
+                                                                }}
+                                                                className='btn btn-primary btn-sm'>Mark as Done</button>
                                                             :
                                                             <span className='badge bg-success'>Completed</span>
                                                     }
